@@ -9,7 +9,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fourth_layout);
+        setContentView(R.layout.fifth_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -19,5 +19,6 @@ public class MainActivity extends AppCompatActivity {
         //textView.setTextSize(22);
         // установка визуального интерфейса для activity
         //setContentView(textView);
+
     }
 }
