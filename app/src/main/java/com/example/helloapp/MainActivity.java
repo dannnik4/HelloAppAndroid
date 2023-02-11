@@ -11,11 +11,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_layout);
 
-        // получаем элемент textView
-        TextView textView = findViewById(R.id.header);
-        // переустанавливаем у него текст
-        textView.setText("Hello from Java!");
-
+        // создание TextView
+        //TextView textView = new TextView(this);
+        // установка текста в TextView
+        //textView.setText("Hello Android!");
+        // установка высоты текста
+        //textView.setTextSize(22);
+        // установка визуального интерфейса для activity
+        //setContentView(textView);
     }
-
 }
