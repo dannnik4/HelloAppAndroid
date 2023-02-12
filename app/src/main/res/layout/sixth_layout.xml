@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
+        android:layout_width="150dp"
         android:text="Hello World!"
         android:textSize="30sp"
-        android:background="#ffcdd2"
+        android:background="#e0e0e0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
