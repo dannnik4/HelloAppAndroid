@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fifth_layout);
+        setContentView(R.layout.sixth_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -21,23 +21,23 @@ public class MainActivity extends AppCompatActivity {
         // установка визуального интерфейса для activity
         //setContentView(textView);
 
-        ConstraintLayout constraintLayout = new ConstraintLayout(this);
-        TextView textView = new TextView(this);
-        textView.setText("Hello Android");
-        textView.setTextSize(26);
+        //ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        //TextView textView = new TextView(this);
+        //textView.setText("Hello Android");
+        //textView.setTextSize(26);
 
         // устанавливаем параметры размеров и расположение элемента
-        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
-                (ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        //ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+        //        (ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
         // эквивалент app:layout_constraintLeft_toLeftOf="parent"
-        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
         // эквивалент app:layout_constraintTop_toTopOf="parent"
-        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
         // устанавливаем параметры для textView
-        textView.setLayoutParams(layoutParams);
+        //textView.setLayoutParams(layoutParams);
         // добавляем TextView в ConstraintLayout
-        constraintLayout.addView(textView);
-        setContentView(constraintLayout);
+        //constraintLayout.addView(textView);
+        //setContentView(constraintLayout);
 
     }
 }
