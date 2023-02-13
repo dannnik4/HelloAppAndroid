@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:text="Отправить"
         app:layout_constraintLeft_toRightOf="@id/editText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/editText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
