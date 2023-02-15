@@ -13,6 +13,9 @@
         android:background="#efefef"
         android:text="First"
         android:textSize="30sp"
+
+        app:layout_constraintVertical_chainStyle="spread_inside"
+
         app:layout_constraintBottom_toTopOf="@id/textView2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
