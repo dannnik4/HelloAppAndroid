@@ -93,27 +93,27 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(linearLayout);
 
 
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        //LinearLayout linearLayout = new LinearLayout(this);
+        //linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         // первое текстовое поле
-        TextView textView1 = new TextView(this);
-        textView1.setText("Hello");
-        textView1.setTextSize(30);
+        //TextView textView1 = new TextView(this);
+        //textView1.setText("Hello");
+        //textView1.setTextSize(30);
         // textView1 имеет вес 3
-        linearLayout.addView(textView1, new LinearLayout.LayoutParams
-                (LinearLayout.LayoutParams.MATCH_PARENT, 0, 3));
+        //linearLayout.addView(textView1, new LinearLayout.LayoutParams
+        //        (LinearLayout.LayoutParams.MATCH_PARENT, 0, 3));
 
         // второе текстовое поле
-        TextView textView2 = new TextView(this);
-        textView2.setText("Android");
-        textView2.setBackgroundColor(0xFFBDBDBD);
-        textView2.setTextSize(30);
+        //TextView textView2 = new TextView(this);
+        //textView2.setText("Android");
+        //textView2.setBackgroundColor(0xFFBDBDBD);
+        //textView2.setTextSize(30);
         // textView2 имеет вес 2
-        linearLayout.addView(textView2, new LinearLayout.LayoutParams
-                (LinearLayout.LayoutParams.MATCH_PARENT, 0, 2));
+        //linearLayout.addView(textView2, new LinearLayout.LayoutParams
+        //        (LinearLayout.LayoutParams.MATCH_PARENT, 0, 2));
 
-        setContentView(linearLayout);
+        //setContentView(linearLayout);
 
     }
 }
