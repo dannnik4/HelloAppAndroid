@@ -74,21 +74,44 @@ public class MainActivity extends AppCompatActivity {
 
 
         //setContentView(R.layout.activity_main);
-        LinearLayout linearLayout = new LinearLayout(this);
+        //LinearLayout linearLayout = new LinearLayout(this);
         // горизонтальная ориентация
-        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        //linearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-        TextView textView = new TextView(this);
-        textView.setText("Hello");
-        textView.setTextSize(30);
+        //TextView textView = new TextView(this);
+        //textView.setText("Hello");
+        //textView.setTextSize(30);
         // создаем параметры позиционирования для элемента
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
-                (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        //LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
+        //        (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         // устанавливаем отступы
-        layoutParams.setMargins(100, 100, 0, 0);
-        textView.setLayoutParams(layoutParams);
+        //layoutParams.setMargins(100, 100, 0, 0);
+        //textView.setLayoutParams(layoutParams);
         // добавляем элемент в LinearLayout
-        linearLayout.addView(textView);
+        //linearLayout.addView(textView);
+
+        //setContentView(linearLayout);
+
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        // первое текстовое поле
+        TextView textView1 = new TextView(this);
+        textView1.setText("Hello");
+        textView1.setTextSize(30);
+        // textView1 имеет вес 3
+        linearLayout.addView(textView1, new LinearLayout.LayoutParams
+                (LinearLayout.LayoutParams.MATCH_PARENT, 0, 3));
+
+        // второе текстовое поле
+        TextView textView2 = new TextView(this);
+        textView2.setText("Android");
+        textView2.setBackgroundColor(0xFFBDBDBD);
+        textView2.setTextSize(30);
+        // textView2 имеет вес 2
+        linearLayout.addView(textView2, new LinearLayout.LayoutParams
+                (LinearLayout.LayoutParams.MATCH_PARENT, 0, 2));
 
         setContentView(linearLayout);
 
