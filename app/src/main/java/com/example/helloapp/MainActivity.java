@@ -3,6 +3,7 @@ package com.example.helloapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         // установка визуального интерфейса для activity
         //setContentView(textView);
 
+
         //ConstraintLayout constraintLayout = new ConstraintLayout(this);
         //TextView textView = new TextView(this);
         //textView.setText("Hello Android");
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(constraintLayout);
 
         //ConstraintLayout constraintLayout = new ConstraintLayout(this);
+
 
         //EditText editText = new EditText(this);
         //editText.setHint("Введите Email");
@@ -68,6 +71,26 @@ public class MainActivity extends AppCompatActivity {
         //constraintLayout.addView(button);
 
         //setContentView(constraintLayout);
+
+
+        //setContentView(R.layout.activity_main);
+        LinearLayout linearLayout = new LinearLayout(this);
+        // горизонтальная ориентация
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView textView = new TextView(this);
+        textView.setText("Hello");
+        textView.setTextSize(30);
+        // создаем параметры позиционирования для элемента
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
+                (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        // устанавливаем отступы
+        layoutParams.setMargins(100, 100, 0, 0);
+        textView.setLayoutParams(layoutParams);
+        // добавляем элемент в LinearLayout
+        linearLayout.addView(textView);
+
+        setContentView(linearLayout);
 
     }
 }
