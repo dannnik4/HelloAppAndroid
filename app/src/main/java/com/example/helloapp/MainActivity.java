@@ -9,13 +9,14 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.linear_layout);
+        setContentView(R.layout.relative_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -116,18 +117,49 @@ public class MainActivity extends AppCompatActivity {
 
         //setContentView(linearLayout);
 
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
-                (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        //LinearLayout linearLayout = new LinearLayout(this);
+        //linearLayout.setOrientation(LinearLayout.VERTICAL);
+        //LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
+        //        (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         // установка layout_gravity
-        layoutParams.gravity = Gravity.CENTER;
+        //layoutParams.gravity = Gravity.CENTER;
         // первое текстовое поле
-        TextView textView1 = new TextView(this);
-        textView1.setText("Hello");
-        textView1.setTextSize(30);
-        linearLayout.addView(textView1, layoutParams);
-        setContentView(linearLayout);
+        //TextView textView1 = new TextView(this);
+        //textView1.setText("Hello");
+        //textView1.setTextSize(30);
+        //linearLayout.addView(textView1, layoutParams);
+        //setContentView(linearLayout);
+
+        RelativeLayout relativeLayout = new RelativeLayout(this);
+
+        EditText editText = new EditText(this);
+        editText.setId(EditText.generateViewId());
+
+        Button button = new Button(this);
+        button.setText("Отправить");
+
+        // устанавливаем параметры положения для EditText
+        RelativeLayout.LayoutParams editTextParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+        // выравнивание по центру родительского контейнера
+        editTextParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        // добавляем в RelativeLayout
+        relativeLayout.addView(editText, editTextParams);
+
+        // устанавливаем параметры положения для Button
+        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+        // выравнивание справа и снизу от поля EditText
+        buttonParams.addRule(RelativeLayout.BELOW, editText.getId());
+        buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, editText.getId());
+        // добавляем в RelativeLayout
+        relativeLayout.addView(button, buttonParams);
+
+        setContentView(relativeLayout);
 
     }
 }
