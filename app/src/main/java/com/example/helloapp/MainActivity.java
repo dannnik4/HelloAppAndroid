@@ -10,13 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.relative_layout);
+        setContentView(R.layout.table_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -130,36 +132,68 @@ public class MainActivity extends AppCompatActivity {
         //linearLayout.addView(textView1, layoutParams);
         //setContentView(linearLayout);
 
-        RelativeLayout relativeLayout = new RelativeLayout(this);
 
-        EditText editText = new EditText(this);
-        editText.setId(EditText.generateViewId());
+        //RelativeLayout relativeLayout = new RelativeLayout(this);
 
-        Button button = new Button(this);
-        button.setText("Отправить");
+        //EditText editText = new EditText(this);
+        //editText.setId(EditText.generateViewId());
+
+        //Button button = new Button(this);
+        //button.setText("Отправить");
 
         // устанавливаем параметры положения для EditText
-        RelativeLayout.LayoutParams editTextParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
+        //RelativeLayout.LayoutParams editTextParams = new RelativeLayout.LayoutParams(
+        //        RelativeLayout.LayoutParams.MATCH_PARENT,
+        //        RelativeLayout.LayoutParams.WRAP_CONTENT
+        //);
         // выравнивание по центру родительского контейнера
-        editTextParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        //editTextParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         // добавляем в RelativeLayout
-        relativeLayout.addView(editText, editTextParams);
+        //relativeLayout.addView(editText, editTextParams);
 
         // устанавливаем параметры положения для Button
-        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
+        //RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
+        //        RelativeLayout.LayoutParams.WRAP_CONTENT,
+        //        RelativeLayout.LayoutParams.WRAP_CONTENT
+        //);
         // выравнивание справа и снизу от поля EditText
-        buttonParams.addRule(RelativeLayout.BELOW, editText.getId());
-        buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, editText.getId());
+        //buttonParams.addRule(RelativeLayout.BELOW, editText.getId());
+        //buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, editText.getId());
         // добавляем в RelativeLayout
-        relativeLayout.addView(button, buttonParams);
+        //relativeLayout.addView(button, buttonParams);
 
-        setContentView(relativeLayout);
+        //setContentView(relativeLayout);
+
+
+        TableLayout tableLayout = new TableLayout( this);
+
+        // первая строка
+        TableRow tableRow1 = new TableRow(this);
+
+        TextView textView1 = new TextView(this);
+        textView1.setText("Логин");
+        tableRow1.addView(textView1, new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+
+        EditText editText1 = new EditText(this);
+        tableRow1.addView(editText1, new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+
+        // вторая строка
+        TableRow tableRow2 = new TableRow(this);
+
+        TextView textView2 = new TextView(this);
+        textView2.setText("Email");
+        tableRow2.addView(textView2, new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+
+        EditText editText2 = new EditText(this);
+        tableRow2.addView(editText2, new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.f));
+
+        tableLayout.addView(tableRow1);
+        tableLayout.addView(tableRow2);
+        setContentView(tableLayout);
 
     }
 }
