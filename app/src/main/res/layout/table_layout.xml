@@ -3,27 +3,34 @@
     android:layout_height="match_parent">
     <TableRow>
         <TextView
-            android:layout_weight="0.5"
+            android:textSize="22sp"
             android:text="Логин"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content" />
 
         <EditText
-            android:layout_weight="1"
-            android:layout_width="match_parent"
+            android:textSize="22sp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"  />
     </TableRow>
 
     <TableRow>
         <TextView
-            android:layout_weight="0.5"
+            android:textSize="22sp"
             android:text="Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <EditText
-            android:layout_weight="1"
+            android:textSize="22sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:text="Отправить"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"/>
     </TableRow>
 </TableLayout>
