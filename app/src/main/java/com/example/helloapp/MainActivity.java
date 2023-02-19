@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.relative_layout);
+        setContentView(R.layout.table_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -130,36 +130,37 @@ public class MainActivity extends AppCompatActivity {
         //linearLayout.addView(textView1, layoutParams);
         //setContentView(linearLayout);
 
-        RelativeLayout relativeLayout = new RelativeLayout(this);
 
-        EditText editText = new EditText(this);
-        editText.setId(EditText.generateViewId());
+        //RelativeLayout relativeLayout = new RelativeLayout(this);
 
-        Button button = new Button(this);
-        button.setText("Отправить");
+        //EditText editText = new EditText(this);
+        //editText.setId(EditText.generateViewId());
+
+        //Button button = new Button(this);
+        //button.setText("Отправить");
 
         // устанавливаем параметры положения для EditText
-        RelativeLayout.LayoutParams editTextParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
+        //RelativeLayout.LayoutParams editTextParams = new RelativeLayout.LayoutParams(
+        //        RelativeLayout.LayoutParams.MATCH_PARENT,
+        //        RelativeLayout.LayoutParams.WRAP_CONTENT
+        //);
         // выравнивание по центру родительского контейнера
-        editTextParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        //editTextParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         // добавляем в RelativeLayout
-        relativeLayout.addView(editText, editTextParams);
+        //relativeLayout.addView(editText, editTextParams);
 
         // устанавливаем параметры положения для Button
-        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
+        //RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
+        //        RelativeLayout.LayoutParams.WRAP_CONTENT,
+        //        RelativeLayout.LayoutParams.WRAP_CONTENT
+        //);
         // выравнивание справа и снизу от поля EditText
-        buttonParams.addRule(RelativeLayout.BELOW, editText.getId());
-        buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, editText.getId());
+        //buttonParams.addRule(RelativeLayout.BELOW, editText.getId());
+        //buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, editText.getId());
         // добавляем в RelativeLayout
-        relativeLayout.addView(button, buttonParams);
+        //relativeLayout.addView(button, buttonParams);
 
-        setContentView(relativeLayout);
+        //setContentView(relativeLayout);
 
     }
 }
