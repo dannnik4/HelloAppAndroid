@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -161,6 +163,37 @@ public class MainActivity extends AppCompatActivity {
         //relativeLayout.addView(button, buttonParams);
 
         //setContentView(relativeLayout);
+
+
+        TableLayout tableLayout = new TableLayout( this);
+
+        // первая строка
+        TableRow tableRow1 = new TableRow(this);
+
+        TextView textView1 = new TextView(this);
+        textView1.setText("Логин");
+        tableRow1.addView(textView1, new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+
+        EditText editText1 = new EditText(this);
+        tableRow1.addView(editText1, new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+
+        // вторая строка
+        TableRow tableRow2 = new TableRow(this);
+
+        TextView textView2 = new TextView(this);
+        textView2.setText("Email");
+        tableRow2.addView(textView2, new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+
+        EditText editText2 = new EditText(this);
+        tableRow2.addView(editText2, new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.f));
+
+        tableLayout.addView(tableRow1);
+        tableLayout.addView(tableRow2);
+        setContentView(tableLayout);
 
     }
 }
