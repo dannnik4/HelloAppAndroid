@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -194,6 +195,20 @@ public class MainActivity extends AppCompatActivity {
         //tableLayout.addView(tableRow1);
         //tableLayout.addView(tableRow2);
         //setContentView(tableLayout);
+
+
+        FrameLayout frameLayout = new FrameLayout(this);
+        TextView textView = new TextView(this);
+        textView.setText("Hello World!");
+
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams
+                (FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.TOP;
+
+        textView.setLayoutParams(layoutParams);
+        textView.setTextSize(26);
+        frameLayout.addView(textView);
+        setContentView(frameLayout);
 
     }
 }
