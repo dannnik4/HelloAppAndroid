@@ -12,13 +12,14 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.table_layout);
+        setContentView(R.layout.frame_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -165,35 +166,49 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(relativeLayout);
 
 
-        TableLayout tableLayout = new TableLayout( this);
+        //TableLayout tableLayout = new TableLayout( this);
 
         // первая строка
-        TableRow tableRow1 = new TableRow(this);
+        //TableRow tableRow1 = new TableRow(this);
 
-        TextView textView1 = new TextView(this);
-        textView1.setText("Логин");
-        tableRow1.addView(textView1, new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+        //TextView textView1 = new TextView(this);
+        //textView1.setText("Логин");
+        //tableRow1.addView(textView1, new TableRow.LayoutParams(
+        //        TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
 
-        EditText editText1 = new EditText(this);
-        tableRow1.addView(editText1, new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
+        //EditText editText1 = new EditText(this);
+        //tableRow1.addView(editText1, new TableRow.LayoutParams(
+        //        TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
 
         // вторая строка
-        TableRow tableRow2 = new TableRow(this);
+        //TableRow tableRow2 = new TableRow(this);
 
-        TextView textView2 = new TextView(this);
-        textView2.setText("Email");
-        tableRow2.addView(textView2, new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
+        //TextView textView2 = new TextView(this);
+        //textView2.setText("Email");
+        //tableRow2.addView(textView2, new TableRow.LayoutParams(
+        //        TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.5f));
 
-        EditText editText2 = new EditText(this);
-        tableRow2.addView(editText2, new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.f));
+        //EditText editText2 = new EditText(this);
+        //tableRow2.addView(editText2, new TableRow.LayoutParams(
+        //        TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.f));
 
-        tableLayout.addView(tableRow1);
-        tableLayout.addView(tableRow2);
-        setContentView(tableLayout);
+        //tableLayout.addView(tableRow1);
+        //tableLayout.addView(tableRow2);
+        //setContentView(tableLayout);
+
+
+        FrameLayout frameLayout = new FrameLayout(this);
+        TextView textView = new TextView(this);
+        textView.setText("Hello World!");
+
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams
+                (FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.TOP;
+
+        textView.setLayoutParams(layoutParams);
+        textView.setTextSize(26);
+        frameLayout.addView(textView);
+        setContentView(frameLayout);
 
     }
 }
