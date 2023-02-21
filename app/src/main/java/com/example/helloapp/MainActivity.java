@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.FrameLayout;
+import android.widget.GridLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -210,5 +211,18 @@ public class MainActivity extends AppCompatActivity {
         //frameLayout.addView(textView);
         //setContentView(frameLayout);
 
+
+        GridLayout gridLayout = new GridLayout( this);
+        // количество строк
+        gridLayout.setRowCount(3);
+        // количество столбцов
+        gridLayout.setColumnCount(3);
+
+        for(int i = 1; i <=9; i++){
+            Button btn = new Button(this);
+            btn.setText(String.valueOf(i));
+            gridLayout.addView(btn);
+        }
+        setContentView(gridLayout);
     }
 }
