@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.grid_layout);
+        setContentView(R.layout.scroll_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -213,11 +213,11 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(frameLayout);
 
 
-        GridLayout gridLayout = new GridLayout( this);
+        //GridLayout gridLayout = new GridLayout( this);
         // количество строк
-        gridLayout.setRowCount(3);
+        //gridLayout.setRowCount(3);
         // количество столбцов
-        gridLayout.setColumnCount(3);
+        //gridLayout.setColumnCount(3);
 
         //for(int i = 1; i <=9; i++){
         //    Button btn = new Button(this);
@@ -225,36 +225,36 @@ public class MainActivity extends AppCompatActivity {
         //    gridLayout.addView(btn);
         //}
 
-        for(int i = 1; i <=3; i++){
-            Button btn = new Button(this);
-            btn.setText(String.valueOf(i));
-            gridLayout.addView(btn);
-        }
+        //for(int i = 1; i <=3; i++){
+        //    Button btn = new Button(this);
+        //    btn.setText(String.valueOf(i));
+        //    gridLayout.addView(btn);
+        //}
 
-        Button btn4 = new Button(this);
-        btn4.setText("4");
-        GridLayout.LayoutParams layoutParams4 = new GridLayout.LayoutParams();
-        layoutParams4.columnSpec = GridLayout.spec(0,2);
-        layoutParams4.width = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
-        gridLayout.addView(btn4, layoutParams4);
+        //Button btn4 = new Button(this);
+        //btn4.setText("4");
+        //GridLayout.LayoutParams layoutParams4 = new GridLayout.LayoutParams();
+        //layoutParams4.columnSpec = GridLayout.spec(0,2);
+        //layoutParams4.width = (int) TypedValue.applyDimension(
+        //        TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
+        //gridLayout.addView(btn4, layoutParams4);
 
 
-        Button btn5 = new Button(this);
-        btn5.setText("5");
-        GridLayout.LayoutParams layoutParams5 = new GridLayout.LayoutParams();
-        layoutParams5.rowSpec = GridLayout.spec(1,2);
-        layoutParams5.height = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
-        gridLayout.addView(btn5, layoutParams5);
+        //Button btn5 = new Button(this);
+        //btn5.setText("5");
+        //GridLayout.LayoutParams layoutParams5 = new GridLayout.LayoutParams();
+        //layoutParams5.rowSpec = GridLayout.spec(1,2);
+        //layoutParams5.height = (int) TypedValue.applyDimension(
+        //        TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
+        //gridLayout.addView(btn5, layoutParams5);
 
-        Button btn6 = new Button(this);
-        btn6.setText("6");
-        Button btn7 = new Button(this);
-        btn7.setText("7");
-        gridLayout.addView(btn6);
-        gridLayout.addView(btn7);
+        //Button btn6 = new Button(this);
+        //btn6.setText("6");
+        //Button btn7 = new Button(this);
+        //btn7.setText("7");
+        //gridLayout.addView(btn6);
+        //gridLayout.addView(btn7);
 
-        setContentView(gridLayout);
+        //setContentView(gridLayout);
     }
 }
