@@ -15,6 +15,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
+import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -256,5 +258,16 @@ public class MainActivity extends AppCompatActivity {
         //gridLayout.addView(btn7);
 
         //setContentView(gridLayout);
+
+
+        ScrollView scrollView = new ScrollView(this);
+
+        TextView textView = new TextView(this);
+        textView.setText("Lorem Ipsum is simply dummy text of the printing and typesetting industry...like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry...like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry...like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry...like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry...like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry...like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry...like Aldus PageMaker including versions of Lorem Ipsum.");
+        textView.setLayoutParams(new ViewGroup.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        textView.setTextSize(26);
+        scrollView.addView(textView);
+        setContentView(scrollView);
     }
 }
