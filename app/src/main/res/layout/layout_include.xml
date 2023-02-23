@@ -9,21 +9,26 @@
     tools:context=".MainActivity">
 
     <include
-        android:id="@+id/textView"
         layout="@layout/text_panel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         />
-    <include
-        android:id="@+id/button"
-        layout="@layout/button_panel"
+    <include layout="@layout/button_panel"
+        android:id="@+id/plus_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/minus_button"/>
+
+    <include layout="@layout/button_panel"
+        android:id="@+id/minus_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+        app:layout_constraintLeft_toRightOf="@id/plus_button"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
