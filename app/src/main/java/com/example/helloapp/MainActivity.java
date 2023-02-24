@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setBackgroundColor(0xffe8eaf6);
 
         // установка gravity
-        textView.setGravity(Gravity.CENTER);
+        textView.setGravity(Gravity.BOTTOM | Gravity.CENTER);
 
         // установка высоты и ширины
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
