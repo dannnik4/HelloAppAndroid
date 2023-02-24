@@ -20,10 +20,10 @@ import android.widget.ScrollView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //@Override
-    //protected void onCreate(Bundle savedInstanceState) {
-    //    super.onCreate(savedInstanceState);
-    //    setContentView(R.layout.scroll_layout);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.gravity_layout);
 
     // создание TextView
     //TextView textView = new TextView(this);
@@ -271,12 +271,12 @@ public class MainActivity extends AppCompatActivity {
     //setContentView(scrollView);
 
 
-    int clicks = 0;
+    //int clicks = 0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_include);
+    //@Override
+    //protected void onCreate(Bundle savedInstanceState) {
+    //    super.onCreate(savedInstanceState);
+    //    setContentView(R.layout.layout_include);
     //}
 
         //public void onClick(View view){
@@ -285,23 +285,46 @@ public class MainActivity extends AppCompatActivity {
         //    clicksText.setText(clicks + " Clicks");
         //}
 
-        View plusButtonView = findViewById(R.id.plus_button);
-        View minusButtonView = findViewById(R.id.minus_button);
-        TextView clicksText = findViewById(R.id.clicksText);
+        //View plusButtonView = findViewById(R.id.plus_button);
+        //View minusButtonView = findViewById(R.id.minus_button);
+        //TextView clicksText = findViewById(R.id.clicksText);
 
-        Button plusButton = plusButtonView.findViewById(R.id.clickBtn);
-        Button minusButton = minusButtonView.findViewById(R.id.clickBtn);
+        //Button plusButton = plusButtonView.findViewById(R.id.clickBtn);
+        //Button minusButton = minusButtonView.findViewById(R.id.clickBtn);
 
-        plusButton.setText("+");
-        minusButton.setText("-");
+        //plusButton.setText("+");
+        //minusButton.setText("-");
 
-        plusButton.setOnClickListener(v -> {
-            clicks++;
-            clicksText.setText(clicks + " Clicks");
-        });
-        minusButton.setOnClickListener(v -> {
-            clicks--;
-            clicksText.setText(clicks + " Clicks");
-        });
+        //plusButton.setOnClickListener(v -> {
+        //    clicks++;
+        //    clicksText.setText(clicks + " Clicks");
+        //});
+        //minusButton.setOnClickListener(v -> {
+        //    clicks--;
+        //    clicksText.setText(clicks + " Clicks");
+        //});
+
+
+        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        TextView textView = new TextView(this);
+        textView.setText("Hello Android!");
+        textView.setTextSize(30);
+        textView.setBackgroundColor(0xffe8eaf6);
+
+        // установка gravity
+        textView.setGravity(Gravity.BOTTOM | Gravity.CENTER);
+
+        // установка высоты и ширины
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+                (ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, 200);
+        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+        textView.setLayoutParams(layoutParams);
+
+        constraintLayout.addView(textView);
+        setContentView(constraintLayout);
+
     }
 }
