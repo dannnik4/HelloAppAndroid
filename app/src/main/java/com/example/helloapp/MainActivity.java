@@ -17,13 +17,14 @@ import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
+import android.graphics.Typeface;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gravity_layout);
+        setContentView(R.layout.textview_layout);
 
     // создание TextView
     //TextView textView = new TextView(this);
@@ -305,26 +306,53 @@ public class MainActivity extends AppCompatActivity {
         //});
 
 
-        ConstraintLayout constraintLayout = new ConstraintLayout(this);
-        TextView textView = new TextView(this);
-        textView.setText("Hello Android!");
-        textView.setTextSize(30);
-        textView.setBackgroundColor(0xffe8eaf6);
+        //ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        //TextView textView = new TextView(this);
+        //textView.setText("Hello Android!");
+        //textView.setTextSize(30);
+        //textView.setBackgroundColor(0xffe8eaf6);
 
         // установка gravity
-        textView.setGravity(Gravity.BOTTOM | Gravity.CENTER);
+        //textView.setGravity(Gravity.BOTTOM | Gravity.CENTER);
 
         // установка высоты и ширины
-        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
-                (ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, 200);
-        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-        layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
-        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-        layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-        textView.setLayoutParams(layoutParams);
+        //ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+        //        (ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, 200);
+        //layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+        //textView.setLayoutParams(layoutParams);
 
-        constraintLayout.addView(textView);
-        setContentView(constraintLayout);
+        //constraintLayout.addView(textView);
+        //setContentView(constraintLayout);
+
+
+        //ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        //TextView textView = new TextView(this);
+        // установка фонового цвета
+        //textView.setBackgroundColor(0xffe8eaf6);
+        // установка цвета текста
+        //textView.setTextColor(0xff5c6bc0);
+        // делаем все буквы заглавными
+        //textView.setAllCaps(true);
+        // устанавливаем вравнивание текста по центру
+        //textView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+        // устанавливаем текста
+        //textView.setText("Hello Android!");
+        // установка шрифта
+        //textView.setTypeface(Typeface.create("casual", Typeface.NORMAL));
+        // устанавливаем высоту текста
+        //textView.setTextSize(26);
+
+        //ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+        //        (ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        //layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        //textView.setLayoutParams(layoutParams);
+
+        //constraintLayout.addView(textView);
+        //setContentView(constraintLayout);
 
     }
 }
