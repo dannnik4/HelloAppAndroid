@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gravity_layout);
+        setContentView(R.layout.textview_layout);
 
     // создание TextView
     //TextView textView = new TextView(this);
@@ -305,26 +305,26 @@ public class MainActivity extends AppCompatActivity {
         //});
 
 
-        ConstraintLayout constraintLayout = new ConstraintLayout(this);
-        TextView textView = new TextView(this);
-        textView.setText("Hello Android!");
-        textView.setTextSize(30);
-        textView.setBackgroundColor(0xffe8eaf6);
+        //ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        //TextView textView = new TextView(this);
+        //textView.setText("Hello Android!");
+        //textView.setTextSize(30);
+        //textView.setBackgroundColor(0xffe8eaf6);
 
         // установка gravity
-        textView.setGravity(Gravity.BOTTOM | Gravity.CENTER);
+        //textView.setGravity(Gravity.BOTTOM | Gravity.CENTER);
 
         // установка высоты и ширины
-        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
-                (ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, 200);
-        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-        layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
-        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-        layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-        textView.setLayoutParams(layoutParams);
+        //ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+        //        (ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, 200);
+        //layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        //layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+        //textView.setLayoutParams(layoutParams);
 
-        constraintLayout.addView(textView);
-        setContentView(constraintLayout);
+        //constraintLayout.addView(textView);
+        //setContentView(constraintLayout);
 
     }
 }
