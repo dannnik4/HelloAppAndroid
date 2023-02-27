@@ -20,13 +20,16 @@ import android.widget.ScrollView;
 import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    EditText editText;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edittext_layout);
+        setContentView(R.layout.button_layout);
 
     // создание TextView
     //TextView textView = new TextView(this);
@@ -282,96 +285,147 @@ public class MainActivity extends AppCompatActivity {
     //    setContentView(R.layout.layout_include);
     //}
 
-        //public void onClick(View view){
-        //    TextView clicksText = findViewById(R.id.clicksText);
-        //    clicks++;
-        //    clicksText.setText(clicks + " Clicks");
-        //}
+    //public void onClick(View view){
+    //    TextView clicksText = findViewById(R.id.clicksText);
+    //    clicks++;
+    //    clicksText.setText(clicks + " Clicks");
+    //}
 
-        //View plusButtonView = findViewById(R.id.plus_button);
-        //View minusButtonView = findViewById(R.id.minus_button);
-        //TextView clicksText = findViewById(R.id.clicksText);
+    //View plusButtonView = findViewById(R.id.plus_button);
+    //View minusButtonView = findViewById(R.id.minus_button);
+    //TextView clicksText = findViewById(R.id.clicksText);
 
-        //Button plusButton = plusButtonView.findViewById(R.id.clickBtn);
-        //Button minusButton = minusButtonView.findViewById(R.id.clickBtn);
+    //Button plusButton = plusButtonView.findViewById(R.id.clickBtn);
+    //Button minusButton = minusButtonView.findViewById(R.id.clickBtn);
 
-        //plusButton.setText("+");
-        //minusButton.setText("-");
+    //plusButton.setText("+");
+    //minusButton.setText("-");
 
-        //plusButton.setOnClickListener(v -> {
-        //    clicks++;
-        //    clicksText.setText(clicks + " Clicks");
-        //});
-        //minusButton.setOnClickListener(v -> {
-        //    clicks--;
-        //    clicksText.setText(clicks + " Clicks");
-        //});
-
-
-        //ConstraintLayout constraintLayout = new ConstraintLayout(this);
-        //TextView textView = new TextView(this);
-        //textView.setText("Hello Android!");
-        //textView.setTextSize(30);
-        //textView.setBackgroundColor(0xffe8eaf6);
-
-        // установка gravity
-        //textView.setGravity(Gravity.BOTTOM | Gravity.CENTER);
-
-        // установка высоты и ширины
-        //ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
-        //        (ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, 200);
-        //layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-        //layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
-        //layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-        //layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-        //textView.setLayoutParams(layoutParams);
-
-        //constraintLayout.addView(textView);
-        //setContentView(constraintLayout);
+    //plusButton.setOnClickListener(v -> {
+    //    clicks++;
+    //    clicksText.setText(clicks + " Clicks");
+    //});
+    //minusButton.setOnClickListener(v -> {
+    //    clicks--;
+    //    clicksText.setText(clicks + " Clicks");
+    //});
 
 
-        //ConstraintLayout constraintLayout = new ConstraintLayout(this);
-        //TextView textView = new TextView(this);
-        // установка фонового цвета
-        //textView.setBackgroundColor(0xffe8eaf6);
-        // установка цвета текста
-        //textView.setTextColor(0xff5c6bc0);
-        // делаем все буквы заглавными
-        //textView.setAllCaps(true);
-        // устанавливаем вравнивание текста по центру
-        //textView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
-        // устанавливаем текста
-        //textView.setText("Hello Android!");
-        // установка шрифта
-        //textView.setTypeface(Typeface.create("casual", Typeface.NORMAL));
-        // устанавливаем высоту текста
-        //textView.setTextSize(26);
+    //ConstraintLayout constraintLayout = new ConstraintLayout(this);
+    //TextView textView = new TextView(this);
+    //textView.setText("Hello Android!");
+    //textView.setTextSize(30);
+    //textView.setBackgroundColor(0xffe8eaf6);
 
-        //ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
-        //        (ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        //layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-        //layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-        //textView.setLayoutParams(layoutParams);
+    // установка gravity
+    //textView.setGravity(Gravity.BOTTOM | Gravity.CENTER);
 
-        //constraintLayout.addView(textView);
-        //setContentView(constraintLayout);
+    // установка высоты и ширины
+    //ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+    //        (ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, 200);
+    //layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+    //layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+    //layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+    //layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+    //textView.setLayoutParams(layoutParams);
+
+    //constraintLayout.addView(textView);
+    //setContentView(constraintLayout);
 
 
-        EditText editText = findViewById(R.id.editText);
+    //ConstraintLayout constraintLayout = new ConstraintLayout(this);
+    //TextView textView = new TextView(this);
+    // установка фонового цвета
+    //textView.setBackgroundColor(0xffe8eaf6);
+    // установка цвета текста
+    //textView.setTextColor(0xff5c6bc0);
+    // делаем все буквы заглавными
+    //textView.setAllCaps(true);
+    // устанавливаем вравнивание текста по центру
+    //textView.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+    // устанавливаем текста
+    //textView.setText("Hello Android!");
+    // установка шрифта
+    //textView.setTypeface(Typeface.create("casual", Typeface.NORMAL));
+    // устанавливаем высоту текста
+    //textView.setTextSize(26);
 
-        editText.addTextChangedListener(new TextWatcher() {
+    //ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+    //        (ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+    //layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+    //layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+    //textView.setLayoutParams(layoutParams);
 
-            public void afterTextChanged(Editable s) {}
+    //constraintLayout.addView(textView);
+    //setContentView(constraintLayout);
 
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
 
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                TextView textView = findViewById(R.id.textView);
-                textView.setText(s);
+    //EditText editText = findViewById(R.id.editText);
+
+    //editText.addTextChangedListener(new TextWatcher() {
+
+    //    public void afterTextChanged(Editable s) {}
+
+    //    public void beforeTextChanged(CharSequence s, int start,
+    //                                  int count, int after) {
+    //    }
+
+    //    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    //        TextView textView = findViewById(R.id.textView);
+    //        textView.setText(s);
+    //    }
+    //});
+
+    //}
+    // Обработка нажатия кнопки
+    //public void sendMessage(View view) {
+    //    TextView textView = findViewById(R.id.textView);
+    //    EditText editText = findViewById(R.id.editText);
+    //    textView.setText("Добро пожаловать, " + editText.getText());
+    //}
+
+        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        textView = new TextView(this);
+        textView.setId(View.generateViewId());
+        ConstraintLayout.LayoutParams textViewLayout =  new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        textViewLayout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        textViewLayout.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        textViewLayout.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+        textView.setLayoutParams(textViewLayout);
+        constraintLayout.addView(textView);
+
+        editText = new EditText(this);
+        editText.setId(View.generateViewId());
+        editText.setHint("Введите имя");
+        ConstraintLayout.LayoutParams editTextLayout =  new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        editTextLayout.topToBottom = textView.getId();
+        editTextLayout.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        editTextLayout.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+        editText.setLayoutParams(editTextLayout);
+        constraintLayout.addView(editText);
+
+        Button button = new Button(this);
+        button.setText("Ввод");
+        ConstraintLayout.LayoutParams buttonLayout =  new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        buttonLayout.topToBottom = editText.getId();
+        buttonLayout.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        button.setLayoutParams(buttonLayout);
+        constraintLayout.addView(button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Обработка нажатия
+                textView.setText("Добро пожаловать, " + editText.getText());
             }
         });
+
+        setContentView(constraintLayout);
 
     }
 }
