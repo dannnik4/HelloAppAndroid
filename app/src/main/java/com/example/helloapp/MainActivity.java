@@ -20,9 +20,12 @@ import android.widget.ScrollView;
 import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    EditText editText;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -373,11 +376,56 @@ public class MainActivity extends AppCompatActivity {
     //    }
     //});
 
-    }
+    //}
     // Обработка нажатия кнопки
-    public void sendMessage(View view) {
-        TextView textView = findViewById(R.id.textView);
-        EditText editText = findViewById(R.id.editText);
-        textView.setText("Добро пожаловать, " + editText.getText());
+    //public void sendMessage(View view) {
+    //    TextView textView = findViewById(R.id.textView);
+    //    EditText editText = findViewById(R.id.editText);
+    //    textView.setText("Добро пожаловать, " + editText.getText());
+    //}
+
+        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        textView = new TextView(this);
+        textView.setId(View.generateViewId());
+        ConstraintLayout.LayoutParams textViewLayout =  new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        textViewLayout.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        textViewLayout.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        textViewLayout.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+        textView.setLayoutParams(textViewLayout);
+        constraintLayout.addView(textView);
+
+        editText = new EditText(this);
+        editText.setId(View.generateViewId());
+        editText.setHint("Введите имя");
+        ConstraintLayout.LayoutParams editTextLayout =  new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        editTextLayout.topToBottom = textView.getId();
+        editTextLayout.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        editTextLayout.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+        editText.setLayoutParams(editTextLayout);
+        constraintLayout.addView(editText);
+
+        Button button = new Button(this);
+        button.setText("Ввод");
+        ConstraintLayout.LayoutParams buttonLayout =  new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        buttonLayout.topToBottom = editText.getId();
+        buttonLayout.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        button.setLayoutParams(buttonLayout);
+        constraintLayout.addView(button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Обработка нажатия
+                textView.setText("Добро пожаловать, " + editText.getText());
+            }
+        });
+
+        setContentView(constraintLayout);
+
     }
 }
