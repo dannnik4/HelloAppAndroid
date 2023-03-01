@@ -433,6 +433,7 @@ public class MainActivity extends AppCompatActivity {
 
     public  void onClick(View view){
         Toast toast = Toast.makeText(this, "Hello Android!",Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP, 0,160);   // import android.view.Gravity;
         toast.show();
     }
 
