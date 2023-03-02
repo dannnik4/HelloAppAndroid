@@ -440,8 +440,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-        public void onClick(View view){
-            Snackbar.make(view, "Hello Android", Snackbar.LENGTH_LONG)
-                    .show();
-        }
+    public  void onClick(View view){
+        Snackbar snackbar = Snackbar.make(view, "Hello Android", Snackbar.LENGTH_LONG);
+
+        snackbar.setAction("Next...", new View.OnClickListener (){
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Next clicked!",Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        snackbar.show();
+    }
 }
