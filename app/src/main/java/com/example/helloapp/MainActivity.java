@@ -444,6 +444,7 @@ public class MainActivity extends AppCompatActivity {
         Snackbar snackbar = Snackbar.make(view, "Hello Android", Snackbar.LENGTH_LONG);
 
         snackbar.setAction("Next...", new View.OnClickListener (){
+
             @Override
             public void onClick(View v) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Next clicked!",Toast.LENGTH_LONG);
@@ -451,5 +452,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         snackbar.show();
+        snackbar.setTextColor(0XFF81C784);
+        snackbar.setBackgroundTint(0XFF555555);
+        snackbar.setActionTextColor(0XFF0277BD);
     }
 }
