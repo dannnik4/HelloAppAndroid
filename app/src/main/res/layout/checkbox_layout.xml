@@ -13,10 +13,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <CheckBox android:id="@+id/enabled"
+    <CheckBox android:id="@+id/java"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Включить"
+        android:text="Java"
         android:textSize="26sp"
 
         android:onClick="onCheckboxClicked"
@@ -24,5 +24,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selection"/>
 
+    <CheckBox android:id="@+id/kotlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kotlin"
+        android:textSize="26sp"
+
+        android:onClick="onCheckboxClicked"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/java"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
