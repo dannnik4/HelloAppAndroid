@@ -2,6 +2,7 @@ package com.example.helloapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -22,7 +23,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.Toast;
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.CompoundButton;
+
+import android.widget.CheckBox;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.snackbar_layout);
+        setContentView(R.layout.checkbox_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -438,22 +441,105 @@ public class MainActivity extends AppCompatActivity {
         //    toast.show();
         //}
 
-    }
+        //}
 
-    public  void onClick(View view){
-        Snackbar snackbar = Snackbar.make(view, "Hello Android", Snackbar.LENGTH_LONG);
+        //public  void onClick(View view){
+        //Snackbar snackbar = Snackbar.make(view, "Hello Android", Snackbar.LENGTH_LONG);
 
-        snackbar.setAction("Next...", new View.OnClickListener (){
+        //snackbar.setAction("Next...", new View.OnClickListener (){
 
-            @Override
-            public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Next clicked!",Toast.LENGTH_LONG);
-                toast.show();
+        //    @Override
+        //    public void onClick(View v) {
+        //        Toast toast = Toast.makeText(getApplicationContext(), "Next clicked!",Toast.LENGTH_LONG);
+        //        toast.show();
+        //    }
+        //});
+        //snackbar.show();
+        //snackbar.setTextColor(0XFF81C784);
+        //snackbar.setBackgroundTint(0XFF555555);
+        //snackbar.setActionTextColor(0XFF0277BD);
+
+
+        //}
+
+        //public void onCheckboxClicked(View view) {
+        // Получаем флажок
+        //CheckBox checkBox = (CheckBox) view;
+        //TextView selection = findViewById(R.id.selection);
+        // Получаем, отмечен ли данный флажок
+        //if(checkBox.isChecked()) {
+        //    selection.setText("Включено");
+        //    checkBox.setText("Выключить");
+        //}
+        //else {
+        //    selection.setText("Выключено");
+        //    checkBox.setText("Включить");
+        //}
+
+    //}
+
+    //public void onCheckboxClicked(View view) {
+        // Получаем флажок
+        //CheckBox checkBox = (CheckBox) view;
+        // Получаем, отмечен ли данный флажок
+        //boolean checked = checkBox.isChecked();
+
+        //TextView selection = findViewById(R.id.selection);
+
+        // Смотрим, какой именно из флажков отмечен
+        //switch (view.getId()) {
+        //    case R.id.java:
+        //        if (checked)
+        //            Toast.makeText(this, "Вы выбрали Java ", Toast.LENGTH_LONG).show();
+        //        break;
+        //    case R.id.kotlin:
+        //        if (checked)
+        //            Toast.makeText(this, "Вы выбрали Kotlin", Toast.LENGTH_LONG).show();
+        //        break;
+        //    default:
+        //        selection.setText("");
+        //}
+
+    //public void onCheckboxClicked(View view) {
+        // Получаем флажок
+        //CheckBox language = (CheckBox) view;
+        // Получаем, отмечен ли данный флажок
+        //TextView selection = findViewById(R.id.selection);
+        //if(language.isChecked())
+        //    selection.setText(language.getText());
+    //}
+
+    //public void onCheckboxClicked(View view) {
+
+        // Получаем флажки
+        //CheckBox java = findViewById(R.id.java);
+        //CheckBox kotlin = findViewById(R.id.kotlin);
+        //String selectedItems = "";
+        //if(java.isChecked())
+        //    selectedItems +=java.getText() + " ";
+        //if(kotlin.isChecked())
+        //    selectedItems +=kotlin.getText();
+
+        //TextView selection = findViewById(R.id.selection);
+        //selection.setText(selectedItems);
+    //}
+
+    TextView selection = findViewById(R.id.selection);
+    CheckBox enableBox = findViewById(R.id.enabled);
+
+        enableBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            if(isChecked) {
+                selection.setText("Включено");
+                buttonView.setText("Выключить");
             }
-        });
-        snackbar.show();
-        snackbar.setTextColor(0XFF81C784);
-        snackbar.setBackgroundTint(0XFF555555);
-        snackbar.setActionTextColor(0XFF0277BD);
-    }
+            else {
+                selection.setText("Выключено");
+                buttonView.setText("Включить");
+            }
+        }
+    });
+}
+
 }
