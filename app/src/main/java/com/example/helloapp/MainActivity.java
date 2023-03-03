@@ -501,13 +501,28 @@ public class MainActivity extends AppCompatActivity {
         //        selection.setText("");
         //}
 
-    public void onCheckboxClicked(View view) {
+    //public void onCheckboxClicked(View view) {
         // Получаем флажок
-        CheckBox language = (CheckBox) view;
+        //CheckBox language = (CheckBox) view;
         // Получаем, отмечен ли данный флажок
+        //TextView selection = findViewById(R.id.selection);
+        //if(language.isChecked())
+        //    selection.setText(language.getText());
+    //}
+
+    public void onCheckboxClicked(View view) {
+
+        // Получаем флажки
+        CheckBox java = findViewById(R.id.java);
+        CheckBox kotlin = findViewById(R.id.kotlin);
+        String selectedItems = "";
+        if(java.isChecked())
+            selectedItems +=java.getText() + " ";
+        if(kotlin.isChecked())
+            selectedItems +=kotlin.getText();
+
         TextView selection = findViewById(R.id.selection);
-        if(language.isChecked())
-            selection.setText(language.getText());
+        selection.setText(selectedItems);
     }
 
 }
