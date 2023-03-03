@@ -2,6 +2,7 @@ package com.example.helloapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -22,7 +23,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.google.android.material.snackbar.Snackbar;
+
 import android.widget.CheckBox;
 
 public class MainActivity extends AppCompatActivity {
@@ -439,18 +442,18 @@ public class MainActivity extends AppCompatActivity {
         //    toast.show();
         //}
 
-    //}
+        //}
 
-    //public  void onClick(View view){
+        //public  void onClick(View view){
         //Snackbar snackbar = Snackbar.make(view, "Hello Android", Snackbar.LENGTH_LONG);
 
         //snackbar.setAction("Next...", new View.OnClickListener (){
 
-            //@Override
-            //public void onClick(View v) {
-                //Toast toast = Toast.makeText(getApplicationContext(), "Next clicked!",Toast.LENGTH_LONG);
-                //toast.show();
-            //}
+        //    @Override
+        //    public void onClick(View v) {
+        //        Toast toast = Toast.makeText(getApplicationContext(), "Next clicked!",Toast.LENGTH_LONG);
+        //        toast.show();
+        //    }
         //});
         //snackbar.show();
         //snackbar.setTextColor(0XFF81C784);
@@ -458,21 +461,44 @@ public class MainActivity extends AppCompatActivity {
         //snackbar.setActionTextColor(0XFF0277BD);
 
 
+        //}
+
+        //public void onCheckboxClicked(View view) {
+        // Получаем флажок
+        //CheckBox checkBox = (CheckBox) view;
+        //TextView selection = findViewById(R.id.selection);
+        // Получаем, отмечен ли данный флажок
+        //if(checkBox.isChecked()) {
+        //    selection.setText("Включено");
+        //    checkBox.setText("Выключить");
+        //}
+        //else {
+        //    selection.setText("Выключено");
+        //    checkBox.setText("Включить");
+        //}
+
     }
 
     public void onCheckboxClicked(View view) {
         // Получаем флажок
         CheckBox checkBox = (CheckBox) view;
-        TextView selection = findViewById(R.id.selection);
         // Получаем, отмечен ли данный флажок
-        if(checkBox.isChecked()) {
-            selection.setText("Включено");
-            checkBox.setText("Выключить");
-        }
-        else {
-            selection.setText("Выключено");
-            checkBox.setText("Включить");
+        boolean checked = checkBox.isChecked();
+
+        TextView selection = findViewById(R.id.selection);
+
+        // Смотрим, какой именно из флажков отмечен
+        switch (view.getId()) {
+            case R.id.java:
+                if (checked)
+                    Toast.makeText(this, "Вы выбрали Java ", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.kotlin:
+                if (checked)
+                    Toast.makeText(this, "Вы выбрали Kotlin", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                selection.setText("");
         }
     }
-
 }
