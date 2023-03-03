@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
+import android.widget.CheckBox;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.snackbar_layout);
+        setContentView(R.layout.checkbox_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -438,22 +439,40 @@ public class MainActivity extends AppCompatActivity {
         //    toast.show();
         //}
 
+    //}
+
+    //public  void onClick(View view){
+        //Snackbar snackbar = Snackbar.make(view, "Hello Android", Snackbar.LENGTH_LONG);
+
+        //snackbar.setAction("Next...", new View.OnClickListener (){
+
+            //@Override
+            //public void onClick(View v) {
+                //Toast toast = Toast.makeText(getApplicationContext(), "Next clicked!",Toast.LENGTH_LONG);
+                //toast.show();
+            //}
+        //});
+        //snackbar.show();
+        //snackbar.setTextColor(0XFF81C784);
+        //snackbar.setBackgroundTint(0XFF555555);
+        //snackbar.setActionTextColor(0XFF0277BD);
+
+
     }
 
-    public  void onClick(View view){
-        Snackbar snackbar = Snackbar.make(view, "Hello Android", Snackbar.LENGTH_LONG);
-
-        snackbar.setAction("Next...", new View.OnClickListener (){
-
-            @Override
-            public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Next clicked!",Toast.LENGTH_LONG);
-                toast.show();
-            }
-        });
-        snackbar.show();
-        snackbar.setTextColor(0XFF81C784);
-        snackbar.setBackgroundTint(0XFF555555);
-        snackbar.setActionTextColor(0XFF0277BD);
+    public void onCheckboxClicked(View view) {
+        // Получаем флажок
+        CheckBox checkBox = (CheckBox) view;
+        TextView selection = findViewById(R.id.selection);
+        // Получаем, отмечен ли данный флажок
+        if(checkBox.isChecked()) {
+            selection.setText("Включено");
+            checkBox.setText("Выключить");
+        }
+        else {
+            selection.setText("Выключено");
+            checkBox.setText("Включить");
+        }
     }
+
 }
