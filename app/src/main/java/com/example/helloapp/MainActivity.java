@@ -23,8 +23,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.CompoundButton;
 
 import android.widget.CheckBox;
 
@@ -477,7 +476,7 @@ public class MainActivity extends AppCompatActivity {
         //    checkBox.setText("Включить");
         //}
 
-    }
+    //}
 
     //public void onCheckboxClicked(View view) {
         // Получаем флажок
@@ -510,19 +509,37 @@ public class MainActivity extends AppCompatActivity {
         //    selection.setText(language.getText());
     //}
 
-    public void onCheckboxClicked(View view) {
+    //public void onCheckboxClicked(View view) {
 
         // Получаем флажки
-        CheckBox java = findViewById(R.id.java);
-        CheckBox kotlin = findViewById(R.id.kotlin);
-        String selectedItems = "";
-        if(java.isChecked())
-            selectedItems +=java.getText() + " ";
-        if(kotlin.isChecked())
-            selectedItems +=kotlin.getText();
+        //CheckBox java = findViewById(R.id.java);
+        //CheckBox kotlin = findViewById(R.id.kotlin);
+        //String selectedItems = "";
+        //if(java.isChecked())
+        //    selectedItems +=java.getText() + " ";
+        //if(kotlin.isChecked())
+        //    selectedItems +=kotlin.getText();
 
-        TextView selection = findViewById(R.id.selection);
-        selection.setText(selectedItems);
-    }
+        //TextView selection = findViewById(R.id.selection);
+        //selection.setText(selectedItems);
+    //}
+
+    TextView selection = findViewById(R.id.selection);
+    CheckBox enableBox = findViewById(R.id.enabled);
+
+        enableBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            if(isChecked) {
+                selection.setText("Включено");
+                buttonView.setText("Выключить");
+            }
+            else {
+                selection.setText("Выключено");
+                buttonView.setText("Включить");
+            }
+        }
+    });
+}
 
 }
