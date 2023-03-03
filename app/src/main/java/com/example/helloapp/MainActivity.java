@@ -479,26 +479,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onCheckboxClicked(View view) {
+    //public void onCheckboxClicked(View view) {
         // Получаем флажок
-        CheckBox checkBox = (CheckBox) view;
+        //CheckBox checkBox = (CheckBox) view;
         // Получаем, отмечен ли данный флажок
-        boolean checked = checkBox.isChecked();
+        //boolean checked = checkBox.isChecked();
 
-        TextView selection = findViewById(R.id.selection);
+        //TextView selection = findViewById(R.id.selection);
 
         // Смотрим, какой именно из флажков отмечен
-        switch (view.getId()) {
-            case R.id.java:
-                if (checked)
-                    Toast.makeText(this, "Вы выбрали Java ", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.kotlin:
-                if (checked)
-                    Toast.makeText(this, "Вы выбрали Kotlin", Toast.LENGTH_LONG).show();
-                break;
-            default:
-                selection.setText("");
-        }
+        //switch (view.getId()) {
+        //    case R.id.java:
+        //        if (checked)
+        //            Toast.makeText(this, "Вы выбрали Java ", Toast.LENGTH_LONG).show();
+        //        break;
+        //    case R.id.kotlin:
+        //        if (checked)
+        //            Toast.makeText(this, "Вы выбрали Kotlin", Toast.LENGTH_LONG).show();
+        //        break;
+        //    default:
+        //        selection.setText("");
+        //}
+
+    public void onCheckboxClicked(View view) {
+        // Получаем флажок
+        CheckBox language = (CheckBox) view;
+        // Получаем, отмечен ли данный флажок
+        TextView selection = findViewById(R.id.selection);
+        if(language.isChecked())
+            selection.setText(language.getText());
     }
+
 }
