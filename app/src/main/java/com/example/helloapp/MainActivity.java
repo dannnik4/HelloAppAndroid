@@ -26,6 +26,8 @@ import android.widget.Toast;
 import android.widget.CompoundButton;
 import android.widget.CheckBox;
 import android.widget.ToggleButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.toggle_layout);
+        setContentView(R.layout.radio_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -555,28 +557,71 @@ public class MainActivity extends AppCompatActivity {
         //        Toast.makeText(this, "Свет выключен!", Toast.LENGTH_LONG).show();
         //    }
 
-        ConstraintLayout layout = new ConstraintLayout(this);
-        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
-                (ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        ToggleButton toggleButton = new ToggleButton(this);
-        toggleButton.setTextOff("Выключено");
-        toggleButton.setTextOn("Включено");
-        toggleButton.setText("Выключено");
-        toggleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean on = ((ToggleButton) view).isChecked();
+//        ConstraintLayout layout = new ConstraintLayout(this);
+//        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+//                (ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//        ToggleButton toggleButton = new ToggleButton(this);
+//        toggleButton.setTextOff("Выключено");
+//        toggleButton.setTextOn("Включено");
+//        toggleButton.setText("Выключено");
+//        toggleButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                boolean on = ((ToggleButton) view).isChecked();
+//
+//                if (on) {
+//                    Toast.makeText(getApplicationContext(), "Свет включен", Toast.LENGTH_LONG).show();
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "Свет выключен!", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
+//        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+//        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+//        layout.addView(toggleButton);
+//        setContentView(layout);
 
-                if (on) {
-                    Toast.makeText(getApplicationContext(), "Свет включен", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Свет выключен!", Toast.LENGTH_LONG).show();
+
+        // получаем объект RadioGroup
+        RadioGroup radGrp = (RadioGroup) findViewById(R.id.radios0);
+        // обработка переключения состояния переключателя
+        radGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup arg0, int id) {
+                TextView selection0 = findViewById(R.id.selection0);
+                switch (id) {
+                    case R.id.java0:
+                        selection0.setText("Выбрана Java");
+                        break;
+                    case R.id.kotlin0:
+                        selection0.setText("Выбран Kotlin");
+                        break;
+                    default:
+                        break;
                 }
             }
         });
-        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-        layout.addView(toggleButton);
-        setContentView(layout);
+
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // если переключатель отмечен
+        boolean checked = ((RadioButton) view).isChecked();
+        TextView selection = findViewById(R.id.selection);
+        // Получаем нажатый переключатель
+        switch (view.getId()) {
+            case R.id.java:
+                if (checked) {
+                    selection.setText("Выбрана Java");
+                }
+                break;
+            case R.id.kotlin:
+                if (checked) {
+                    selection.setText("Выбран Kotlin");
+                }
+                break;
+        }
+
+
     }
 }
