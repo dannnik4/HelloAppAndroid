@@ -27,6 +27,7 @@ import android.widget.CompoundButton;
 import android.widget.CheckBox;
 import android.widget.ToggleButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -581,6 +582,26 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(layout);
 
 
+        // получаем объект RadioGroup
+        RadioGroup radGrp = (RadioGroup) findViewById(R.id.radios0);
+        // обработка переключения состояния переключателя
+        radGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup arg0, int id) {
+                TextView selection0 = findViewById(R.id.selection0);
+                switch (id) {
+                    case R.id.java0:
+                        selection0.setText("Выбрана Java");
+                        break;
+                    case R.id.kotlin0:
+                        selection0.setText("Выбран Kotlin");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
     }
 
     public void onRadioButtonClicked(View view) {
@@ -603,5 +624,4 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 }
