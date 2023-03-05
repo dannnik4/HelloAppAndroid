@@ -6,6 +6,31 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+
+    <TextView android:id="@+id/selection0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radios"/>
+
+    <RadioGroup
+        android:id="@+id/radios0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selection0">
+        <RadioButton android:id="@+id/java0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Java" />
+        <RadioButton android:id="@+id/kotlin0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kotlin" />
+    </RadioGroup>
+
     <TextView android:id="@+id/selection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
