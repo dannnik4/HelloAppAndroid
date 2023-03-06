@@ -641,5 +641,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        TextView dateTextView0 = findViewById(R.id.dateTextView0);
+        DatePicker datePicker0 = this.findViewById(R.id.datePicker0);
+
+        // Месяц начиная с нуля. Для отображения добавляем 1.
+        datePicker0.init(2023, 02, 06, new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                // Отсчет месяцев начинается с нуля. Для отображения добавляем 1.
+                dateTextView0.setText("Дата: " + view.getDayOfMonth() + "/" +
+                        (view.getMonth() + 1) + "/" + view.getYear());
+
+                // альтернативная запись
+                // dateTextView.setText("Дата: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+            }
+        });
     }
 }
