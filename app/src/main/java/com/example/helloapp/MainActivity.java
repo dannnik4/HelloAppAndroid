@@ -28,6 +28,7 @@ import android.widget.CheckBox;
 import android.widget.ToggleButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.DatePicker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.radio_layout);
+        setContentView(R.layout.date_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -583,45 +584,62 @@ public class MainActivity extends AppCompatActivity {
 
 
         // получаем объект RadioGroup
-        RadioGroup radGrp = (RadioGroup) findViewById(R.id.radios0);
+//        RadioGroup radGrp = (RadioGroup) findViewById(R.id.radios0);
         // обработка переключения состояния переключателя
-        radGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//        radGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup arg0, int id) {
+//                TextView selection0 = findViewById(R.id.selection0);
+//                switch (id) {
+//                    case R.id.java0:
+//                        selection0.setText("Выбрана Java");
+//                        break;
+//                    case R.id.kotlin0:
+//                        selection0.setText("Выбран Kotlin");
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
+//
+//    }
+
+//    public void onRadioButtonClicked(View view) {
+        // если переключатель отмечен
+//        boolean checked = ((RadioButton) view).isChecked();
+//        TextView selection = findViewById(R.id.selection);
+        // Получаем нажатый переключатель
+//        switch (view.getId()) {
+//            case R.id.java:
+//                if (checked) {
+//                    selection.setText("Выбрана Java");
+//                }
+//                break;
+//            case R.id.kotlin:
+//                if (checked) {
+//                    selection.setText("Выбран Kotlin");
+//                }
+//                break;
+//        }
+
+
+        TextView dateTextView = findViewById(R.id.dateTextView);
+        DatePicker datePicker = this.findViewById(R.id.datePicker);
+
+        // Месяц начиная с нуля. Для отображения добавляем 1.
+        datePicker.init(2023, 02, 06, new DatePicker.OnDateChangedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup arg0, int id) {
-                TextView selection0 = findViewById(R.id.selection0);
-                switch (id) {
-                    case R.id.java0:
-                        selection0.setText("Выбрана Java");
-                        break;
-                    case R.id.kotlin0:
-                        selection0.setText("Выбран Kotlin");
-                        break;
-                    default:
-                        break;
-                }
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                // Отсчет месяцев начинается с нуля. Для отображения добавляем 1.
+                dateTextView.setText("Дата: " + view.getDayOfMonth() + "/" +
+                        (view.getMonth() + 1) + "/" + view.getYear());
+
+                // альтернативная запись
+                // dateTextView.setText("Дата: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
             }
         });
-
-    }
-
-    public void onRadioButtonClicked(View view) {
-        // если переключатель отмечен
-        boolean checked = ((RadioButton) view).isChecked();
-        TextView selection = findViewById(R.id.selection);
-        // Получаем нажатый переключатель
-        switch (view.getId()) {
-            case R.id.java:
-                if (checked) {
-                    selection.setText("Выбрана Java");
-                }
-                break;
-            case R.id.kotlin:
-                if (checked) {
-                    selection.setText("Выбран Kotlin");
-                }
-                break;
-        }
-
 
     }
 }
