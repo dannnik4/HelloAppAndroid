@@ -678,5 +678,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        TextView timeTextViewSpinner = findViewById(R.id.timeTextViewSpinner);
+        TimePicker timePickerSpinner = findViewById(R.id.timePickerSpinner);
+
+        // Установить формат времени на 24-часовой
+        timePickerSpinner.setIs24HourView(true);
+
+        timePickerSpinner.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+
+                String NewMinute = (minute < 10 ? "0" : "") + minute;
+
+                timeTextViewSpinner.setText("Время: " + hourOfDay + ":" + NewMinute);
+                // или так
+                // timeTextViewSpinner.setText("Время: " + view.getHour() + ":" + view.getMinute());
+            }
+        });
+
     }
 }
