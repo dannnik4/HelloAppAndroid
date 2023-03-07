@@ -670,7 +670,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 
-                timeTextView.setText("Время: " + hourOfDay + ":" + minute);
+                String NewMinute = (minute < 10 ? "0" : "") + minute;
+
+                timeTextView.setText("Время: " + hourOfDay + ":" + NewMinute);
                 // или так
                 // timeTextView.setText("Время: " + view.getHour() + ":" + view.getMinute());
             }
