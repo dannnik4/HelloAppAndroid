@@ -29,6 +29,7 @@ import android.widget.ToggleButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.DatePicker;
+import android.widget.TimePicker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.date_layout);
+        setContentView(R.layout.time_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -583,9 +584,9 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(layout);
 
 
-        // получаем объект RadioGroup
+//      // получаем объект RadioGroup
 //        RadioGroup radGrp = (RadioGroup) findViewById(R.id.radios0);
-        // обработка переключения состояния переключателя
+//      // обработка переключения состояния переключателя
 //        radGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 //            @Override
 //            public void onCheckedChanged(RadioGroup arg0, int id) {
@@ -606,10 +607,10 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 //    public void onRadioButtonClicked(View view) {
-        // если переключатель отмечен
+//      // если переключатель отмечен
 //        boolean checked = ((RadioButton) view).isChecked();
 //        TextView selection = findViewById(R.id.selection);
-        // Получаем нажатый переключатель
+//      // Получаем нажатый переключатель
 //        switch (view.getId()) {
 //            case R.id.java:
 //                if (checked) {
@@ -624,38 +625,56 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
 
-        TextView dateTextView = findViewById(R.id.dateTextView);
-        DatePicker datePicker = this.findViewById(R.id.datePicker);
+//        TextView dateTextView = findViewById(R.id.dateTextView);
+//        DatePicker datePicker = this.findViewById(R.id.datePicker);
+//
+//        // Месяц начиная с нуля. Для отображения добавляем 1.
+//        datePicker.init(2023, 02, 06, new DatePicker.OnDateChangedListener() {
+//            @Override
+//            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//
+//                // Отсчет месяцев начинается с нуля. Для отображения добавляем 1.
+//                dateTextView.setText("Дата: " + view.getDayOfMonth() + "/" +
+//                        (view.getMonth() + 1) + "/" + view.getYear());
+//
+//                // альтернативная запись
+//                // dateTextView.setText("Дата: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//            }
+//        });
+//
+//        TextView dateTextView0 = findViewById(R.id.dateTextView0);
+//        DatePicker datePicker0 = this.findViewById(R.id.datePicker0);
+//
+//        // Месяц начиная с нуля. Для отображения добавляем 1.
+//        datePicker0.init(2023, 02, 06, new DatePicker.OnDateChangedListener() {
+//            @Override
+//            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//
+//                // Отсчет месяцев начинается с нуля. Для отображения добавляем 1.
+//                dateTextView0.setText("Дата: " + view.getDayOfMonth() + "/" +
+//                        (view.getMonth() + 1) + "/" + view.getYear());
+//
+//                // альтернативная запись
+//                // dateTextView.setText("Дата: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//            }
+//        });
 
-        // Месяц начиная с нуля. Для отображения добавляем 1.
-        datePicker.init(2023, 02, 06, new DatePicker.OnDateChangedListener() {
+
+        TextView timeTextView = findViewById(R.id.timeTextView);
+        TimePicker timePicker = findViewById(R.id.timePicker);
+
+        // Установить формат времени на 24-часовой
+        timePicker.setIs24HourView(true);
+
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 
-                // Отсчет месяцев начинается с нуля. Для отображения добавляем 1.
-                dateTextView.setText("Дата: " + view.getDayOfMonth() + "/" +
-                        (view.getMonth() + 1) + "/" + view.getYear());
-
-                // альтернативная запись
-                // dateTextView.setText("Дата: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                timeTextView.setText("Время: " + hourOfDay + ":" + minute);
+                // или так
+                // timeTextView.setText("Время: " + view.getHour() + ":" + view.getMinute());
             }
         });
 
-        TextView dateTextView0 = findViewById(R.id.dateTextView0);
-        DatePicker datePicker0 = this.findViewById(R.id.datePicker0);
-
-        // Месяц начиная с нуля. Для отображения добавляем 1.
-        datePicker0.init(2023, 02, 06, new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-                // Отсчет месяцев начинается с нуля. Для отображения добавляем 1.
-                dateTextView0.setText("Дата: " + view.getDayOfMonth() + "/" +
-                        (view.getMonth() + 1) + "/" + view.getYear());
-
-                // альтернативная запись
-                // dateTextView.setText("Дата: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-            }
-        });
     }
 }
