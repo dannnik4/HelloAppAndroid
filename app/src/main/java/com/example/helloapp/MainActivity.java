@@ -670,9 +670,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 
+                String NewHour = (hourOfDay < 10 ? "0" : "") + hourOfDay;
                 String NewMinute = (minute < 10 ? "0" : "") + minute;
 
-                timeTextView.setText("Время: " + hourOfDay + ":" + NewMinute);
+                timeTextView.setText("Время: " + NewHour + ":" + NewMinute);
                 // или так
                 // timeTextView.setText("Время: " + view.getHour() + ":" + view.getMinute());
             }
@@ -689,9 +690,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 
+                String NewHour = (hourOfDay < 10 ? "0" : "") + hourOfDay;
                 String NewMinute = (minute < 10 ? "0" : "") + minute;
 
-                timeTextViewSpinner.setText("Время: " + hourOfDay + ":" + NewMinute);
+                timeTextViewSpinner.setText("Время: " + NewHour + ":" + NewMinute);
                 // или так
                 // timeTextViewSpinner.setText("Время: " + view.getHour() + ":" + view.getMinute());
             }
