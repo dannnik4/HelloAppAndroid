@@ -30,6 +30,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -698,6 +699,27 @@ public class MainActivity extends AppCompatActivity {
 //                // timeTextViewSpinner.setText("Время: " + view.getHour() + ":" + view.getMinute());
 //            }
 //        });
+
+
+        SeekBar seekBar = findViewById(R.id.seekBar);
+        TextView textView = findViewById(R.id.seekBarValue);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                textView.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
     }
 }
