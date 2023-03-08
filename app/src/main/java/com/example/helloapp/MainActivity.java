@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.time_layout);
+        setContentView(R.layout.seekbar_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -660,44 +660,44 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-        TextView timeTextView = findViewById(R.id.timeTextView);
-        TimePicker timePicker = findViewById(R.id.timePicker);
-
-        // Установить формат времени на 24-часовой
-        timePicker.setIs24HourView(true);
-
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-
-                String NewHour = (hourOfDay < 10 ? "0" : "") + hourOfDay;
-                String NewMinute = (minute < 10 ? "0" : "") + minute;
-
-                timeTextView.setText("Время: " + NewHour + ":" + NewMinute);
-                // или так
-                // timeTextView.setText("Время: " + view.getHour() + ":" + view.getMinute());
-            }
-        });
-
-
-        TextView timeTextViewSpinner = findViewById(R.id.timeTextViewSpinner);
-        TimePicker timePickerSpinner = findViewById(R.id.timePickerSpinner);
-
-        // Установить формат времени на 24-часовой
-        timePickerSpinner.setIs24HourView(true);
-
-        timePickerSpinner.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-
-                String NewHour = (hourOfDay < 10 ? "0" : "") + hourOfDay;
-                String NewMinute = (minute < 10 ? "0" : "") + minute;
-
-                timeTextViewSpinner.setText("Время: " + NewHour + ":" + NewMinute);
-                // или так
-                // timeTextViewSpinner.setText("Время: " + view.getHour() + ":" + view.getMinute());
-            }
-        });
+//        TextView timeTextView = findViewById(R.id.timeTextView);
+//        TimePicker timePicker = findViewById(R.id.timePicker);
+//
+//        // Установить формат времени на 24-часовой
+//        timePicker.setIs24HourView(true);
+//
+//        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+//            @Override
+//            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+//
+//                String NewHour = (hourOfDay < 10 ? "0" : "") + hourOfDay;
+//                String NewMinute = (minute < 10 ? "0" : "") + minute;
+//
+//                timeTextView.setText("Время: " + NewHour + ":" + NewMinute);
+//                // или так
+//                // timeTextView.setText("Время: " + view.getHour() + ":" + view.getMinute());
+//            }
+//        });
+//
+//
+//        TextView timeTextViewSpinner = findViewById(R.id.timeTextViewSpinner);
+//        TimePicker timePickerSpinner = findViewById(R.id.timePickerSpinner);
+//
+//        // Установить формат времени на 24-часовой
+//        timePickerSpinner.setIs24HourView(true);
+//
+//        timePickerSpinner.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+//            @Override
+//            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+//
+//                String NewHour = (hourOfDay < 10 ? "0" : "") + hourOfDay;
+//                String NewMinute = (minute < 10 ? "0" : "") + minute;
+//
+//                timeTextViewSpinner.setText("Время: " + NewHour + ":" + NewMinute);
+//                // или так
+//                // timeTextViewSpinner.setText("Время: " + view.getHour() + ":" + view.getMinute());
+//            }
+//        });
 
     }
 }
