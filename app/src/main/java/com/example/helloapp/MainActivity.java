@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seekbar_layout);
+        // setContentView(R.layout.seekbar_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -701,25 +701,36 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-        SeekBar seekBar = findViewById(R.id.seekBar);
-        TextView textView = findViewById(R.id.seekBarValue);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//        SeekBar seekBar = findViewById(R.id.seekBar);
+//        TextView textView = findViewById(R.id.seekBarValue);
+//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//
+//                textView.setText(String.valueOf(seekBar.getProgress()));
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
 
-                textView.setText(String.valueOf(seekBar.getProgress()));
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+        //setContentView(R.layout.activity_main);
+        // получение ресурсов из файла values/strings.xml
+        String app_name = getResources().getString(R.string.app_name);
 
-            }
+        TextView textView = new TextView(this);
+        textView.setTextSize(30);
+        textView.setText(app_name);
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        setContentView(textView);
 
     }
 }
