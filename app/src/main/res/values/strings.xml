@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HelloApp</string>
     <string name="message">Hello Android!</string>
+    <string name="welcome_message">Добро пожаловать %1$s! Уже %2$d : %3$d</string>
 </resources>
