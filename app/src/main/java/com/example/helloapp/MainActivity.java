@@ -3,6 +3,7 @@ package com.example.helloapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -31,6 +32,9 @@ import android.widget.RadioGroup;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.SeekBar;
+import android.content.res.Resources;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.seekbar_layout);
+        //setContentView(R.layout.string_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -722,14 +726,39 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-        //setContentView(R.layout.activity_main);
-        // получение ресурсов из файла values/strings.xml
-        String app_name = getResources().getString(R.string.app_name);
+//        //setContentView(R.layout.activity_main);
+//        // получение ресурсов из файла values/strings.xml
+//        String app_name = getResources().getString(R.string.app_name);
+//
+//        TextView textView = new TextView(this);
+//        textView.setTextSize(30);
+//        textView.setText(app_name);
+
+//        Resources res = getResources();
+//
+//        String userName = "Даниил";
+//        Calendar calendar = Calendar.getInstance();
+//        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//        int minute = calendar.get(Calendar.MINUTE);
+//
+//        String text = getString(R.string.welcome_message, userName, hour, minute);
+//        TextView textView = new TextView(this);
+//        textView.setText(text);
+//        textView.setTextSize(28);
+//        setContentView(textView);
+
+        Locale locale = new Locale("rus");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(
+                config, getBaseContext().getResources().getDisplayMetrics());
+
+        String rose = getResources().getQuantityString(R.plurals.flowers, 21, 21);
 
         TextView textView = new TextView(this);
-        textView.setTextSize(30);
-        textView.setText(app_name);
-
+        textView.setText(rose);
+        textView.setTextSize(26);
         setContentView(textView);
 
     }
