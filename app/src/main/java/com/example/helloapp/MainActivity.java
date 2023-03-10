@@ -31,6 +31,8 @@ import android.widget.RadioGroup;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.SeekBar;
+import android.content.res.Resources;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -729,8 +731,20 @@ public class MainActivity extends AppCompatActivity {
 //        TextView textView = new TextView(this);
 //        textView.setTextSize(30);
 //        textView.setText(app_name);
-//
-//        setContentView(textView);
+
+
+        Resources res = getResources();
+
+        String userName = "Даниил";
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        String text = getString(R.string.welcome_message, userName, hour, minute);
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setTextSize(28);
+        setContentView(textView);
 
     }
 }
