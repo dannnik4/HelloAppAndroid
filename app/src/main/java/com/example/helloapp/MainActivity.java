@@ -3,6 +3,7 @@ package com.example.helloapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -33,6 +34,7 @@ import android.widget.TimePicker;
 import android.widget.SeekBar;
 import android.content.res.Resources;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.string_layout);
+        //setContentView(R.layout.string_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -732,18 +734,31 @@ public class MainActivity extends AppCompatActivity {
 //        textView.setTextSize(30);
 //        textView.setText(app_name);
 
+//        Resources res = getResources();
+//
+//        String userName = "Даниил";
+//        Calendar calendar = Calendar.getInstance();
+//        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//        int minute = calendar.get(Calendar.MINUTE);
+//
+//        String text = getString(R.string.welcome_message, userName, hour, minute);
+//        TextView textView = new TextView(this);
+//        textView.setText(text);
+//        textView.setTextSize(28);
+//        setContentView(textView);
 
-        Resources res = getResources();
+        Locale locale = new Locale("rus");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(
+                config, getBaseContext().getResources().getDisplayMetrics());
 
-        String userName = "Даниил";
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
+        String rose = getResources().getQuantityString(R.plurals.flowers, 21, 21);
 
-        String text = getString(R.string.welcome_message, userName, hour, minute);
         TextView textView = new TextView(this);
-        textView.setText(text);
-        textView.setTextSize(28);
+        textView.setText(rose);
+        textView.setTextSize(26);
         setContentView(textView);
 
     }
