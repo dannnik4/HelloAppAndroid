@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.seekbar_layout);
+        setContentView(R.layout.string_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -722,15 +722,15 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-        //setContentView(R.layout.activity_main);
-        // получение ресурсов из файла values/strings.xml
-        String app_name = getResources().getString(R.string.app_name);
-
-        TextView textView = new TextView(this);
-        textView.setTextSize(30);
-        textView.setText(app_name);
-
-        setContentView(textView);
+//        //setContentView(R.layout.activity_main);
+//        // получение ресурсов из файла values/strings.xml
+//        String app_name = getResources().getString(R.string.app_name);
+//
+//        TextView textView = new TextView(this);
+//        textView.setTextSize(30);
+//        textView.setText(app_name);
+//
+//        setContentView(textView);
 
     }
 }
