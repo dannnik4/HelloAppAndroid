@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.string_layout);
+        //setContentView(R.layout.dimen_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -747,18 +747,29 @@ public class MainActivity extends AppCompatActivity {
 //        textView.setTextSize(28);
 //        setContentView(textView);
 
-        Locale locale = new Locale("rus");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(
-                config, getBaseContext().getResources().getDisplayMetrics());
+//        Locale locale = new Locale("rus");
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+//        config.locale = locale;
+//        getBaseContext().getResources().updateConfiguration(
+//                config, getBaseContext().getResources().getDisplayMetrics());
+//
+//        String rose = getResources().getQuantityString(R.plurals.flowers, 21, 21);
+//
+//        TextView textView = new TextView(this);
+//        textView.setText(rose);
+//        textView.setTextSize(26);
+//        setContentView(textView);
 
-        String rose = getResources().getQuantityString(R.plurals.flowers, 21, 21);
-
+        Resources res = getResources();
+        String[] languages = res.getStringArray(R.array.languages);
+        String allLangs = "";
+        for (String lang: languages) {
+            allLangs += lang + " ";
+        }
         TextView textView = new TextView(this);
-        textView.setText(rose);
-        textView.setTextSize(26);
+        textView.setText(allLangs);
+        textView.setTextSize(28);
         setContentView(textView);
 
     }
