@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.dimen_layout);
+        setContentView(R.layout.dimen_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -761,16 +761,16 @@ public class MainActivity extends AppCompatActivity {
 //        textView.setTextSize(26);
 //        setContentView(textView);
 
-        Resources res = getResources();
-        String[] languages = res.getStringArray(R.array.languages);
-        String allLangs = "";
-        for (String lang: languages) {
-            allLangs += lang + " ";
-        }
-        TextView textView = new TextView(this);
-        textView.setText(allLangs);
-        textView.setTextSize(28);
-        setContentView(textView);
+//        Resources res = getResources();
+//        String[] languages = res.getStringArray(R.array.languages);
+//        String allLangs = "";
+//        for (String lang: languages) {
+//            allLangs += lang + " ";
+//        }
+//        TextView textView = new TextView(this);
+//        textView.setText(allLangs);
+//        textView.setTextSize(28);
+//        setContentView(textView);
 
     }
 }
