@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dimen_layout);
+        setContentView(R.layout.colors_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -773,11 +773,37 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(textView);
 
 
+//        // получаем ресурсы
+//        Resources resources = getResources();
+//        float textSize = resources.getDimension(R.dimen.text_size);
+//        int hMargin = (int)resources.getDimension(R.dimen.horizontal_margin);
+//        int vMargin = (int)resources.getDimension(R.dimen.vertical_margin);
+//
+//        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+//
+//        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+//                (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+//        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+//
+//        TextView textView = new TextView(this);
+//        textView.setText("Hello Android");
+//        textView.setBackgroundColor(0XFFEAEAEA);
+//        // устанавливаем размер шрифт по ресурсу
+//        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+//        // устанавливаем отступы пв соответствии с ресурсами
+//        layoutParams.setMargins(hMargin, vMargin, hMargin, vMargin);
+//
+//        textView.setLayoutParams(layoutParams);
+//        constraintLayout.addView(textView);
+//
+//        setContentView(constraintLayout);
+
+
         // получаем ресурсы
         Resources resources = getResources();
-        float textSize = resources.getDimension(R.dimen.text_size);
-        int hMargin = (int)resources.getDimension(R.dimen.horizontal_margin);
-        int vMargin = (int)resources.getDimension(R.dimen.vertical_margin);
+        int textColor = resources.getColor(R.color.textViewFontColor,  null);
+        int backgroundColor = resources.getColor(R.color.textViewBackColor,  null);
 
         ConstraintLayout constraintLayout = new ConstraintLayout(this);
 
@@ -788,11 +814,11 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView = new TextView(this);
         textView.setText("Hello Android");
-        textView.setBackgroundColor(0XFFEAEAEA);
-        // устанавливаем размер шрифт по ресурсу
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-        // устанавливаем отступы пв соответствии с ресурсами
-        layoutParams.setMargins(hMargin, vMargin, hMargin, vMargin);
+        textView.setTextSize(32);
+
+        // используем ресурсы color
+        textView.setTextColor(textColor);
+        textView.setBackgroundColor(backgroundColor);
 
         textView.setLayoutParams(layoutParams);
         constraintLayout.addView(textView);
