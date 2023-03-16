@@ -889,10 +889,16 @@ public class MainActivity extends AppCompatActivity {
         String company = companyText.getText().toString();
         int age = Integer.parseInt(ageText.getText().toString());
 
+        //Intent intent = new Intent(this, SecondActivity.class);
+        //intent.putExtra("name", name);
+        //intent.putExtra("company", company);
+        //intent.putExtra("age", age);
+        //startActivity(intent);
+
+        User user = new User(name, company, age);
+
         Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra("name", name);
-        intent.putExtra("company", company);
-        intent.putExtra("age", age);
+        intent.putExtra(User.class.getSimpleName(), user);
         startActivity(intent);
 
     }
