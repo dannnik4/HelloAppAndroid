@@ -25,11 +25,19 @@ public class SecondActivity extends AppCompatActivity {
 
         Bundle arguments = getIntent().getExtras();
 
+        //if(arguments!=null){
+        //    String name = arguments.get("name").toString();
+        //    String company = arguments.getString("company");
+        //    int age = arguments.getInt("age");
+        //    textView.setText("Name: " + name + "\nCompany: " + company + "\nAge: " + age);
+        //}
+
+        User user;
         if(arguments!=null){
-            String name = arguments.get("name").toString();
-            String company = arguments.getString("company");
-            int age = arguments.getInt("age");
-            textView.setText("Name: " + name + "\nCompany: " + company + "\nAge: " + age);
+            user = (User) arguments.getSerializable(User.class.getSimpleName());
+
+            textView.setText("Name: " + user.getName() + "\nCompany: " + user.getCompany() +
+                    "\nAge: " + String.valueOf(user.getAge()));
         }
 
         setContentView(textView);
