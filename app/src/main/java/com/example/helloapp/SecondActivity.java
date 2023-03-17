@@ -19,27 +19,43 @@ public class SecondActivity extends AppCompatActivity {
 //        setContentView(textView);
 
 
+//        TextView textView = new TextView(this);
+//        textView.setTextSize(26);
+//        textView.setPadding(16, 16, 16, 16);
+//
+//        Bundle arguments = getIntent().getExtras();
+//
+//        //if(arguments!=null){
+//        //    String name = arguments.get("name").toString();
+//        //    String company = arguments.getString("company");
+//        //    int age = arguments.getInt("age");
+//        //    textView.setText("Name: " + name + "\nCompany: " + company + "\nAge: " + age);
+//        //}
+//
+//        User user;
+//        if(arguments!=null){
+//            user = (User) arguments.getSerializable(User.class.getSimpleName());
+//
+//            textView.setText("Name: " + user.getName() + "\nCompany: " + user.getCompany() +
+//                    "\nAge: " + String.valueOf(user.getAge()));
+//        }
+//
+//        setContentView(textView);
+
+
         TextView textView = new TextView(this);
         textView.setTextSize(26);
         textView.setPadding(16, 16, 16, 16);
 
         Bundle arguments = getIntent().getExtras();
 
-        //if(arguments!=null){
-        //    String name = arguments.get("name").toString();
-        //    String company = arguments.getString("company");
-        //    int age = arguments.getInt("age");
-        //    textView.setText("Name: " + name + "\nCompany: " + company + "\nAge: " + age);
-        //}
-
         User user;
         if(arguments!=null){
-            user = (User) arguments.getSerializable(User.class.getSimpleName());
+            user = arguments.getParcelable(User.class.getSimpleName());
 
             textView.setText("Name: " + user.getName() + "\nCompany: " + user.getCompany() +
                     "\nAge: " + String.valueOf(user.getAge()));
         }
-
         setContentView(textView);
     }
 }
