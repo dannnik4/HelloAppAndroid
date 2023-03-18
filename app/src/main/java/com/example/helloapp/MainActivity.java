@@ -1,5 +1,9 @@
 package com.example.helloapp;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -34,6 +38,8 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.SeekBar;
 import android.content.res.Resources;
+import android.app.Activity;
+import android.content.Intent;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -42,14 +48,34 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final static String TAG = "MainActivity";
+    //private final static String TAG = "MainActivity";
+
+    static final String AGE_KEY = "AGE";
+    static final String ACCESS_MESSAGE="ACCESS_MESSAGE";
+
+    ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+
+                    TextView textView = findViewById(R.id.textView);
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        Intent intent = result.getData();
+                        String accessMessage = intent.getStringExtra(ACCESS_MESSAGE);
+                        textView.setText(accessMessage);
+                    }
+                    else{
+                        textView.setText("Ошибка доступа");
+                    }
+                }
+            });
 
     //EditText editText;
     //TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.parcelable_layout);
+        setContentView(R.layout.result_main);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -902,22 +928,34 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 
 
+//    }
+//    public void onClick(View v) {
+//
+//        EditText nameText = findViewById(R.id.name);
+//        EditText companyText = findViewById(R.id.company);
+//        EditText ageText = findViewById(R.id.age);
+//
+//        String name = nameText.getText().toString();
+//        String company = companyText.getText().toString();
+//        int age = Integer.parseInt(ageText.getText().toString());
+//
+//        User user = new User(name, company, age);
+//
+//        Intent intent = new Intent(this, SecondActivity.class);
+//        intent.putExtra(User.class.getSimpleName(), user);
+//        startActivity(intent);
+
+
     }
-    public void onClick(View v) {
-
-        EditText nameText = findViewById(R.id.name);
-        EditText companyText = findViewById(R.id.company);
-        EditText ageText = findViewById(R.id.age);
-
-        String name = nameText.getText().toString();
-        String company = companyText.getText().toString();
-        int age = Integer.parseInt(ageText.getText().toString());
-
-        User user = new User(name, company, age);
+    public void onClick(View view) {
+        // получаем введенный возраст
+        EditText ageBox = findViewById(R.id.age);
+        String age = ageBox.getText().toString();
 
         Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra(User.class.getSimpleName(), user);
-        startActivity(intent);
+        intent.putExtra(AGE_KEY, age);
+
+        mStartForResult.launch(intent);
 
     }
 }
