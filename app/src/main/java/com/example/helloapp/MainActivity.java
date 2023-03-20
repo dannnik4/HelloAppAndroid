@@ -6,9 +6,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -40,6 +42,7 @@ import android.widget.SeekBar;
 import android.content.res.Resources;
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.ImageView;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -50,32 +53,32 @@ public class MainActivity extends AppCompatActivity {
 
     //private final static String TAG = "MainActivity";
 
-    static final String AGE_KEY = "AGE";
-    static final String ACCESS_MESSAGE="ACCESS_MESSAGE";
-
-    ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-
-                    TextView textView = findViewById(R.id.textView);
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent intent = result.getData();
-                        String accessMessage = intent.getStringExtra(ACCESS_MESSAGE);
-                        textView.setText(accessMessage);
-                    }
-                    else{
-                        textView.setText("Ошибка доступа");
-                    }
-                }
-            });
+//    static final String AGE_KEY = "AGE";
+//    static final String ACCESS_MESSAGE="ACCESS_MESSAGE";
+//
+//    ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//
+//                    TextView textView = findViewById(R.id.textView);
+//                    if(result.getResultCode() == Activity.RESULT_OK){
+//                        Intent intent = result.getData();
+//                        String accessMessage = intent.getStringExtra(ACCESS_MESSAGE);
+//                        textView.setText(accessMessage);
+//                    }
+//                    else{
+//                        textView.setText("Ошибка доступа");
+//                    }
+//                }
+//            });
 
     //EditText editText;
     //TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.result_main);
+        setContentView(R.layout.image_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -946,16 +949,47 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 
 
-    }
-    public void onClick(View view) {
-        // получаем введенный возраст
-        EditText ageBox = findViewById(R.id.age);
-        String age = ageBox.getText().toString();
+//    }
+//    public void onClick(View view) {
+//        // получаем введенный возраст
+//        EditText ageBox = findViewById(R.id.age);
+//        String age = ageBox.getText().toString();
+//
+//        Intent intent = new Intent(this, SecondActivity.class);
+//        intent.putExtra(AGE_KEY, age);
+//
+//        mStartForResult.launch(intent);
 
-        Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra(AGE_KEY, age);
 
-        mStartForResult.launch(intent);
+//        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+//        ImageView imageView = new ImageView(this);
+//        // применяем ресурс
+//        imageView.setImageResource(R.drawable.dubi2);
+//
+//        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+//                (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+//        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+//        imageView.setLayoutParams(layoutParams);
+//        constraintLayout.addView(imageView);
+//
+//        setContentView(constraintLayout);
+
+        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+        ImageView imageView = new ImageView(this);
+        Resources res = getResources();
+        Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.dubi2, null);
+        // применяем ресурс
+        imageView.setImageDrawable(drawable);
+
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+                (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        imageView.setLayoutParams(layoutParams);
+        constraintLayout.addView(imageView);
+
+        setContentView(constraintLayout);
 
     }
 }
