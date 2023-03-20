@@ -6,9 +6,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -959,10 +961,26 @@ public class MainActivity extends AppCompatActivity {
 //        mStartForResult.launch(intent);
 
 
+//        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+//        ImageView imageView = new ImageView(this);
+//        // применяем ресурс
+//        imageView.setImageResource(R.drawable.dubi2);
+//
+//        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+//                (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+//        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+//        imageView.setLayoutParams(layoutParams);
+//        constraintLayout.addView(imageView);
+//
+//        setContentView(constraintLayout);
+
         ConstraintLayout constraintLayout = new ConstraintLayout(this);
         ImageView imageView = new ImageView(this);
+        Resources res = getResources();
+        Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.dubi2, null);
         // применяем ресурс
-        imageView.setImageResource(R.drawable.dubi2);
+        imageView.setImageDrawable(drawable);
 
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
                 (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
