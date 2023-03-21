@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.image_layout);
+        setContentView(R.layout.imageview_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -975,12 +975,28 @@ public class MainActivity extends AppCompatActivity {
 //
 //        setContentView(constraintLayout);
 
+//        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+//        ImageView imageView = new ImageView(this);
+//        Resources res = getResources();
+//        Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.dubi2, null);
+//        // применяем ресурс
+//        imageView.setImageDrawable(drawable);
+//
+//        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+//                (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+//        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+//        imageView.setLayoutParams(layoutParams);
+//        constraintLayout.addView(imageView);
+//
+//        setContentView(constraintLayout);
+
+
         ConstraintLayout constraintLayout = new ConstraintLayout(this);
         ImageView imageView = new ImageView(this);
-        Resources res = getResources();
-        Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.dubi2, null);
-        // применяем ресурс
-        imageView.setImageDrawable(drawable);
+        imageView.setImageResource(R.drawable.dubi2);
+        // задаем масштабирование
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
                 (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
