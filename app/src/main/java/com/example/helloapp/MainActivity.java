@@ -44,6 +44,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.ImageView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.imageview_layout);
+        setContentView(R.layout.assetsimage_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -992,20 +994,32 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(constraintLayout);
 
 
-        ConstraintLayout constraintLayout = new ConstraintLayout(this);
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.dubi2);
-        // задаем масштабирование
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//        ConstraintLayout constraintLayout = new ConstraintLayout(this);
+//        ImageView imageView = new ImageView(this);
+//        imageView.setImageResource(R.drawable.dubi2);
+//        // задаем масштабирование
+//        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//
+//        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+//                (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+//        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+//        imageView.setLayoutParams(layoutParams);
+//        constraintLayout.addView(imageView);
+//
+//        setContentView(constraintLayout);
 
-        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
-                (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-        imageView.setLayoutParams(layoutParams);
-        constraintLayout.addView(imageView);
 
-        setContentView(constraintLayout);
+        ImageView imageView = findViewById(R.id.image) ;
+        String filename = "dubi2.png";
+        try(InputStream inputStream = getApplicationContext().getAssets().open(filename)){
+            Drawable drawable = Drawable.createFromStream(inputStream, null);
+            imageView.setImageDrawable(drawable);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 }
