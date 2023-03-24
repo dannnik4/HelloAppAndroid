@@ -27,18 +27,18 @@ public class MainActivity extends AppCompatActivity {
 //        countriesList.setAdapter(adapter);
 
 
-        // получаем элемент ListView
-        ListView countriesList = findViewById(R.id.countriesList);
-
-        // получаем ресурс
-        String[] countries = getResources().getStringArray(R.array.countries);
-
-        // создаем адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, countries);
-
-        // устанавливаем для списка адаптер
-        countriesList.setAdapter(adapter);
+//        // получаем элемент ListView
+//        ListView countriesList = findViewById(R.id.countriesList);
+//
+//        // получаем ресурс
+//        String[] countries = getResources().getStringArray(R.array.countries);
+//
+//        // создаем адаптер
+//        ArrayAdapter<String> adapter = new ArrayAdapter(this,
+//                android.R.layout.simple_list_item_1, countries);
+//
+//        // устанавливаем для списка адаптер
+//        countriesList.setAdapter(adapter);
 
     }
 }
