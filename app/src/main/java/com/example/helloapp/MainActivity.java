@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -18,15 +19,18 @@ public class MainActivity extends AppCompatActivity {
 //    // набор данных, которые свяжем со списком
 //    String[] countries = {"Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
 
-    ArrayList<String> users = new ArrayList<String>();
-    ArrayList<String> selectedUsers = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
-    ListView usersList;
+//    ArrayList<String> users = new ArrayList<String>();
+//    ArrayList<String> selectedUsers = new ArrayList<String>();
+//    ArrayAdapter<String> adapter;
+//    ListView usersList;
+
+    ArrayList<State> states = new ArrayList<State>();
+    ListView countriesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.arrayadapter_layout);
+        setContentView(R.layout.state_layout);
 
 //        // получаем элемент ListView
 //        ListView countriesList = findViewById(R.id.countriesList);
@@ -103,51 +107,81 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-        // добавляем начальные элементы
-        Collections.addAll(users, "Tom", "Bob", "Sam", "Alice");
+//        // добавляем начальные элементы
+//        Collections.addAll(users, "Tom", "Bob", "Sam", "Alice");
+//        // получаем элемент ListView
+//        usersList = findViewById(R.id.usersList);
+//        // создаем адаптер
+//        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, users);
+//        // устанавливаем для списка адаптер
+//        usersList.setAdapter(adapter);
+//
+//        // обработка установки и снятия отметки в списке
+//        usersList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+//            {
+//                // получаем нажатый элемент
+//                String user = adapter.getItem(position);
+//                if(usersList.isItemChecked(position))
+//                    selectedUsers.add(user);
+//                else
+//                    selectedUsers.remove(user);
+//            }
+//        });
+//    }
+
+//    public void add(View view){
+//
+//        EditText userName = findViewById(R.id.userName);
+//        String user = userName.getText().toString();
+//        if(!user.isEmpty()){
+//            adapter.add(user);
+//            userName.setText("");
+//            adapter.notifyDataSetChanged();
+//        }
+//    }
+//    public void remove(View view){
+//        // получаем и удаляем выделенные элементы
+//        for(int i=0; i< selectedUsers.size();i++){
+//            adapter.remove(selectedUsers.get(i));
+//        }
+//        // снимаем все ранее установленные отметки
+//        usersList.clearChoices();
+//        // очищаем массив выбраных объектов
+//        selectedUsers.clear();
+//
+//        adapter.notifyDataSetChanged();
+
+
+        // начальная инициализация списка
+        setInitialData();
         // получаем элемент ListView
-        usersList = findViewById(R.id.usersList);
+        countriesList = findViewById(R.id.countriesList);
         // создаем адаптер
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, users);
-        // устанавливаем для списка адаптер
-        usersList.setAdapter(adapter);
-
-        // обработка установки и снятия отметки в списке
-        usersList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
+        // устанавливаем адаптер
+        countriesList.setAdapter(stateAdapter);
+        // слушатель выбора в списке
+        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-            {
-                // получаем нажатый элемент
-                String user = adapter.getItem(position);
-                if(usersList.isItemChecked(position))
-                    selectedUsers.add(user);
-                else
-                    selectedUsers.remove(user);
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
+                // получаем выбранный пункт
+                State selectedState = (State)parent.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(), "Был выбран пункт " + selectedState.getName(),
+                        Toast.LENGTH_SHORT).show();
             }
-        });
+        };
+        countriesList.setOnItemClickListener(itemListener);
     }
+    private void setInitialData(){
 
-    public void add(View view){
-
-        EditText userName = findViewById(R.id.userName);
-        String user = userName.getText().toString();
-        if(!user.isEmpty()){
-            adapter.add(user);
-            userName.setText("");
-            adapter.notifyDataSetChanged();
-        }
-    }
-    public void remove(View view){
-        // получаем и удаляем выделенные элементы
-        for(int i=0; i< selectedUsers.size();i++){
-            adapter.remove(selectedUsers.get(i));
-        }
-        // снимаем все ранее установленные отметки
-        usersList.clearChoices();
-        // очищаем массив выбраных объектов
-        selectedUsers.clear();
-
-        adapter.notifyDataSetChanged();
+        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
 
     }
 }
