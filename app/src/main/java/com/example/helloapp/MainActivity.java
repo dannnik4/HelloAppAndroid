@@ -182,6 +182,21 @@ public class MainActivity extends AppCompatActivity {
         states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
         states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
         states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
+        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
+        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
+        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
 
     }
 }
