@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
 //    ArrayAdapter<String> adapter;
 //    ListView usersList;
 
-    ArrayList<State> states = new ArrayList<State>();
-    ListView countriesList;
+//    ArrayList<State> states = new ArrayList<State>();
+//    ListView countriesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.state_layout);
+        setContentView(R.layout.product_layout);
 
 //        // получаем элемент ListView
 //        ListView countriesList = findViewById(R.id.countriesList);
@@ -155,48 +156,61 @@ public class MainActivity extends AppCompatActivity {
 
 
         // начальная инициализация списка
-        setInitialData();
-        // получаем элемент ListView
-        countriesList = findViewById(R.id.countriesList);
-        // создаем адаптер
-        StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
-        // устанавливаем адаптер
-        countriesList.setAdapter(stateAdapter);
-        // слушатель выбора в списке
-        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+//        setInitialData();
+//        // получаем элемент ListView
+//        countriesList = findViewById(R.id.countriesList);
+//        // создаем адаптер
+//        StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
+//        // устанавливаем адаптер
+//        countriesList.setAdapter(stateAdapter);
+//        // слушатель выбора в списке
+//        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+//
+//                // получаем выбранный пункт
+//                State selectedState = (State)parent.getItemAtPosition(position);
+//                Toast.makeText(getApplicationContext(), "Был выбран пункт " + selectedState.getName(),
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        };
+//        countriesList.setOnItemClickListener(itemListener);
+//    }
+//    private void setInitialData(){
+//
+//        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+//        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+//        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+//        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+//        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
+//        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+//        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+//        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+//        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+//        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
+//        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+//        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+//        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+//        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+//        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
+//        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+//        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+//        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+//        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+//        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
 
-                // получаем выбранный пункт
-                State selectedState = (State)parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Был выбран пункт " + selectedState.getName(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        };
-        countriesList.setOnItemClickListener(itemListener);
-    }
-    private void setInitialData(){
 
-        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
-        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
-        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
-        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
-        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
-        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
-        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
-        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
-        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
-        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
-        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
-        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
-        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
-        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
-        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
-        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
-        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
-        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
-        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
-        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
+        ArrayList<Product> products = new ArrayList<Product>();
+        if(products.size()==0){
+            products.add(new Product("Картофель", "кг."));
+            products.add(new Product("Чай", "шт."));
+            products.add(new Product("Яйца", "шт."));
+            products.add(new Product("Молоко", "л."));
+            products.add(new Product("Макароны", "кг."));
+        }
+        ListView productList = findViewById(R.id.productList);
+        ProductAdapter adapter = new ProductAdapter(this, R.layout.list_item, products);
+        productList.setAdapter(adapter);
 
     }
 }
