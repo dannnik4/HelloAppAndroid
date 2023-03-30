@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ArrayList;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
 //    ArrayList<State> states = new ArrayList<State>();
 //    ListView countriesList;
 
+    String[] countries = { "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_layout);
+        setContentView(R.layout.spinner_layout);
 
 //        // получаем элемент ListView
 //        ListView countriesList = findViewById(R.id.countriesList);
@@ -200,17 +203,43 @@ public class MainActivity extends AppCompatActivity {
 //        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
 
 
-        ArrayList<Product> products = new ArrayList<Product>();
-        if(products.size()==0){
-            products.add(new Product("Картофель", "кг."));
-            products.add(new Product("Чай", "шт."));
-            products.add(new Product("Яйца", "шт."));
-            products.add(new Product("Молоко", "л."));
-            products.add(new Product("Макароны", "кг."));
-        }
-        ListView productList = findViewById(R.id.productList);
-        ProductAdapter adapter = new ProductAdapter(this, R.layout.list_item, products);
-        productList.setAdapter(adapter);
+//        ArrayList<Product> products = new ArrayList<Product>();
+//        if(products.size()==0){
+//            products.add(new Product("Картофель", "кг."));
+//            products.add(new Product("Чай", "шт."));
+//            products.add(new Product("Яйца", "шт."));
+//            products.add(new Product("Молоко", "л."));
+//            products.add(new Product("Макароны", "кг."));
+//        }
+//        ListView productList = findViewById(R.id.productList);
+//        ProductAdapter adapter = new ProductAdapter(this, R.layout.list_item, products);
+//        productList.setAdapter(adapter);
+
+
+        TextView selection = findViewById(R.id.selection);
+
+        Spinner spinner = findViewById(R.id.spinner);
+        // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, countries);
+        // Определяем разметку для использования при выборе элемента
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Применяем адаптер к элементу spinner
+        spinner.setAdapter(adapter);
+
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                // Получаем выбранный объект
+                String item = (String)parent.getItemAtPosition(position);
+                selection.setText(item);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        };
+        spinner.setOnItemSelectedListener(itemSelectedListener);
 
     }
 }
