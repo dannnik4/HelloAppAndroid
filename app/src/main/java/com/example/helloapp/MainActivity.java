@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.ArrayList;
 import android.widget.Spinner;
 import android.widget.AutoCompleteTextView;
+import android.widget.MultiAutoCompleteTextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -243,11 +244,20 @@ public class MainActivity extends AppCompatActivity {
 //        spinner.setOnItemSelectedListener(itemSelectedListener);
 
 
+//        // Получаем ссылку на элемент AutoCompleteTextView в разметке
+//        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autocomplete);
+//        // Создаем адаптер для автозаполнения элемента AutoCompleteTextView
+//        ArrayAdapter<String> adapter = new ArrayAdapter (this, R.layout.support_simple_spinner_dropdown_item, countries);
+//        autoCompleteTextView.setAdapter(adapter);
+
+
         // Получаем ссылку на элемент AutoCompleteTextView в разметке
-        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.autocomplete);
-        // Создаем адаптер для автозаполнения элемента AutoCompleteTextView
-        ArrayAdapter<String> adapter = new ArrayAdapter (this, R.layout.support_simple_spinner_dropdown_item, countries);
+        MultiAutoCompleteTextView autoCompleteTextView = findViewById(R.id.autocomplete);
+        // Создаем адаптер для автозаполнения элемента MultiAutoCompleteTextView
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, cities);
         autoCompleteTextView.setAdapter(adapter);
+        // установка запятой в качестве разделителя
+        autoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
     }
 }
