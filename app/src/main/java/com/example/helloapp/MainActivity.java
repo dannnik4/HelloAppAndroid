@@ -17,11 +17,12 @@ import java.util.ArrayList;
 import android.widget.Spinner;
 import android.widget.AutoCompleteTextView;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.GridView;
 
 public class MainActivity extends AppCompatActivity {
 
 //    // набор данных, которые свяжем со списком
-//    String[] countries = {"Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
+    String[] countries = {"Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
 
 //    ArrayList<String> users = new ArrayList<String>();
 //    ArrayList<String> selectedUsers = new ArrayList<String>();
@@ -31,12 +32,10 @@ public class MainActivity extends AppCompatActivity {
 //    ArrayList<State> states = new ArrayList<State>();
 //    ListView countriesList;
 
-    String[] countries = { "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.autocompletetextview);
+        setContentView(R.layout.gridview_layout);
 
 //        // получаем элемент ListView
 //        ListView countriesList = findViewById(R.id.countriesList);
@@ -251,13 +250,31 @@ public class MainActivity extends AppCompatActivity {
 //        autoCompleteTextView.setAdapter(adapter);
 
 
-        // Получаем ссылку на элемент AutoCompleteTextView в разметке
-        MultiAutoCompleteTextView autoCompleteTextView = findViewById(R.id.autocomplete);
-        // Создаем адаптер для автозаполнения элемента MultiAutoCompleteTextView
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, cities);
-        autoCompleteTextView.setAdapter(adapter);
-        // установка запятой в качестве разделителя
-        autoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+//        // Получаем ссылку на элемент AutoCompleteTextView в разметке
+//        MultiAutoCompleteTextView autoCompleteTextView = findViewById(R.id.autocomplete);
+//        // Создаем адаптер для автозаполнения элемента MultiAutoCompleteTextView
+//        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, cities);
+//        autoCompleteTextView.setAdapter(adapter);
+//        // установка запятой в качестве разделителя
+//        autoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+
+        // получаем элемент GridView
+        GridView countriesList = findViewById(R.id.gridview);
+        // создаем адаптер
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, countries);
+        countriesList.setAdapter(adapter);
+
+        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(),"Вы выбрали "
+                                + parent.getItemAtPosition(position).toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        };
+        countriesList.setOnItemClickListener(itemListener);
 
     }
 }
