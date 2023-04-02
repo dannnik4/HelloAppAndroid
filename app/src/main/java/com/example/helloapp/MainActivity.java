@@ -3,6 +3,7 @@ package com.example.helloapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -32,10 +33,12 @@ public class MainActivity extends AppCompatActivity {
 //    ArrayList<State> states = new ArrayList<State>();
 //    ListView countriesList;
 
+    ArrayList<State> states = new ArrayList<State>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gridview_layout);
+        setContentView(R.layout.recyclerview_layout);
 
 //        // получаем элемент ListView
 //        ListView countriesList = findViewById(R.id.countriesList);
@@ -259,22 +262,39 @@ public class MainActivity extends AppCompatActivity {
 //        autoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
 
-        // получаем элемент GridView
-        GridView countriesList = findViewById(R.id.gridview);
+//        // получаем элемент GridView
+//        GridView countriesList = findViewById(R.id.gridview);
+//        // создаем адаптер
+//        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, countries);
+//        countriesList.setAdapter(adapter);
+//
+//        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(getApplicationContext(),"Вы выбрали "
+//                                + parent.getItemAtPosition(position).toString(),
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        };
+//        countriesList.setOnItemClickListener(itemListener);
+
+
+        // начальная инициализация списка
+        setInitialData();
+        RecyclerView recyclerView = findViewById(R.id.list);
         // создаем адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, countries);
-        countriesList.setAdapter(adapter);
+        StateAdapter adapter = new StateAdapter(this, states);
+        // устанавливаем для списка адаптер
+        recyclerView.setAdapter(adapter);
+    }
+    private void setInitialData(){
 
-        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),"Вы выбрали "
-                                + parent.getItemAtPosition(position).toString(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        };
-        countriesList.setOnItemClickListener(itemListener);
+        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
 
     }
 }
