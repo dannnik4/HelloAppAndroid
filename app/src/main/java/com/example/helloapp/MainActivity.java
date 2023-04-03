@@ -23,7 +23,7 @@ import android.widget.GridView;
 public class MainActivity extends AppCompatActivity {
 
 //    // набор данных, которые свяжем со списком
-    String[] countries = {"Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
+//    String[] countries = {"Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
 
 //    ArrayList<String> users = new ArrayList<String>();
 //    ArrayList<String> selectedUsers = new ArrayList<String>();
@@ -280,11 +280,37 @@ public class MainActivity extends AppCompatActivity {
 //        countriesList.setOnItemClickListener(itemListener);
 
 
+//        // начальная инициализация списка
+//        setInitialData();
+//        RecyclerView recyclerView = findViewById(R.id.list);
+//        // создаем адаптер
+//        StateAdapter adapter = new StateAdapter(this, states);
+//        // устанавливаем для списка адаптер
+//        recyclerView.setAdapter(adapter);
+//    }
+//    private void setInitialData(){
+//
+//        states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
+//        states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.argentina));
+//        states.add(new State ("Колумбия", "Богота", R.drawable.columbia));
+//        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
+//        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
+
+
         // начальная инициализация списка
         setInitialData();
         RecyclerView recyclerView = findViewById(R.id.list);
+        // определяем слушателя нажатия элемента в списке
+        StateAdapter.OnStateClickListener stateClickListener = new StateAdapter.OnStateClickListener() {
+            @Override
+            public void onStateClick(State state, int position) {
+
+                Toast.makeText(getApplicationContext(), "Был выбран пункт " + state.getName(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        };
         // создаем адаптер
-        StateAdapter adapter = new StateAdapter(this, states);
+        StateAdapter adapter = new StateAdapter(this, states, stateClickListener);
         // устанавливаем для списка адаптер
         recyclerView.setAdapter(adapter);
     }
