@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.style_layout);
+        setContentView(R.layout.theme_layout);
 
 //        // получаем элемент ListView
 //        ListView countriesList = findViewById(R.id.countriesList);
