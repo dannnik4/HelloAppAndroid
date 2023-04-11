@@ -20,6 +20,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.GridView;
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.theme_layout);
+        setContentView(R.layout.menu_layout);
 
 //        // получаем элемент ListView
 //        ListView countriesList = findViewById(R.id.countriesList);
@@ -330,5 +331,24 @@ public class MainActivity extends AppCompatActivity {
 
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        TextView headerView = findViewById(R.id.selectedMenuItem);
+        switch(id){
+            case R.id.action_settings :
+                headerView.setText("Настройки");
+                return true;
+            case R.id.open_settings:
+                headerView.setText("Открыть");
+                return true;
+            case R.id.save_settings:
+                headerView.setText("Сохранить");
+                return true;
+        }
+        //headerView.setText(item.getTitle());
+        return super.onOptionsItemSelected(item);
     }
 }
