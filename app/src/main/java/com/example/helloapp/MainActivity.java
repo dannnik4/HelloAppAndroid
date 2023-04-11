@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.AutoCompleteTextView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.GridView;
+import android.view.Menu;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -322,5 +323,12 @@ public class MainActivity extends AppCompatActivity {
 //        states.add(new State ("Уругвай", "Монтевидео", R.drawable.uruguai));
 //        states.add(new State ("Чили", "Сантьяго", R.drawable.chile));
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
     }
 }
