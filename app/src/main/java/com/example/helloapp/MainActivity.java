@@ -1,6 +1,7 @@
 package com.example.helloapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,13 +12,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_life);
+        setContentView(R.layout.fragment_cooper);
 
 //        if (savedInstanceState == null) {
 //            getSupportFragmentManager().beginTransaction()
 //                    .add(R.id.fragment_container_view, ContentFragment.class, null)
 //                    .commit();
 //        }
+
 
     }
 
@@ -125,4 +127,13 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onSendData(String selectedItem) {
+        DetailFragment fragment = (DetailFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.detailFragment);
+        if (fragment != null)
+            fragment.setSelectedItem(selectedItem);
+    }
+
 }
