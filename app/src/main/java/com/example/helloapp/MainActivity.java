@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.assetsimage_layout);
+        setContentView(R.layout.webview_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1010,16 +1011,19 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(constraintLayout);
 
 
-        ImageView imageView = findViewById(R.id.image) ;
-        String filename = "dubi2.png";
-        try(InputStream inputStream = getApplicationContext().getAssets().open(filename)){
-            Drawable drawable = Drawable.createFromStream(inputStream, null);
-            imageView.setImageDrawable(drawable);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+//        ImageView imageView = findViewById(R.id.image) ;
+//        String filename = "dubi2.png";
+//        try(InputStream inputStream = getApplicationContext().getAssets().open(filename)){
+//            Drawable drawable = Drawable.createFromStream(inputStream, null);
+//            imageView.setImageDrawable(drawable);
+//            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//        }
+//        catch (IOException e){
+//            e.printStackTrace();
+//        }
 
+
+        WebView browser=findViewById(R.id.webBrowser);
+        browser.loadUrl("https://metanit.com");
     }
 }
