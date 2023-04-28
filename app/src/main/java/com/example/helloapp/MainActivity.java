@@ -17,6 +17,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
@@ -1107,9 +1108,28 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
+//        videoPlayer = findViewById(R.id.videoPlayer);
+//        Uri myVideoUri= Uri.parse( "android.resource://" + getPackageName() + "/" + R.raw.cats);
+//        videoPlayer.setVideoURI(myVideoUri);
+//    }
+//
+//    public void play(View view){
+//        videoPlayer.start();
+//    }
+//    public void pause(View view){
+//        videoPlayer.pause();
+//    }
+//    public void stop(View view){
+//        videoPlayer.stopPlayback();
+//        videoPlayer.resume();
+//    }
+
         videoPlayer = findViewById(R.id.videoPlayer);
         Uri myVideoUri= Uri.parse( "android.resource://" + getPackageName() + "/" + R.raw.cats);
         videoPlayer.setVideoURI(myVideoUri);
+        MediaController mediaController = new MediaController(this);
+        videoPlayer.setMediaController(mediaController);
+        mediaController.setMediaPlayer(videoPlayer);
     }
 
     public void play(View view){
