@@ -1124,12 +1124,27 @@ public class MainActivity extends AppCompatActivity {
 //        videoPlayer.resume();
 //    }
 
+//        videoPlayer = findViewById(R.id.videoPlayer);
+//        Uri myVideoUri= Uri.parse( "android.resource://" + getPackageName() + "/" + R.raw.cats);
+//        videoPlayer.setVideoURI(myVideoUri);
+//        MediaController mediaController = new MediaController(this);
+//        videoPlayer.setMediaController(mediaController);
+//        mediaController.setMediaPlayer(videoPlayer);
+//    }
+//
+//    public void play(View view){
+//        videoPlayer.start();
+//    }
+//    public void pause(View view){
+//        videoPlayer.pause();
+//    }
+//    public void stop(View view){
+//        videoPlayer.stopPlayback();
+//        videoPlayer.resume();
+//    }
+
         videoPlayer = findViewById(R.id.videoPlayer);
-        Uri myVideoUri= Uri.parse( "android.resource://" + getPackageName() + "/" + R.raw.cats);
-        videoPlayer.setVideoURI(myVideoUri);
-        MediaController mediaController = new MediaController(this);
-        videoPlayer.setMediaController(mediaController);
-        mediaController.setMediaPlayer(videoPlayer);
+        videoPlayer.setVideoPath("http://techslides.com/demos/sample-videos/small.mp4");
     }
 
     public void play(View view){
