@@ -12,39 +12,80 @@ public class MainActivity extends AppCompatActivity {
     String name ="undefined";
     final static String nameVariableKey = "NAME_VARIABLE";
     TextView nameView;
+    User user = new User("undefined", 0);
+    final static String userVariableKey = "USER_VARIABLE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.instance_layout);
+        setContentView(R.layout.serializable_layout);
 
-        nameView = findViewById(R.id.nameView);
+//        nameView = findViewById(R.id.nameView);
+//    }
+//
+//    // сохранение состояния
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//
+//        outState.putString(nameVariableKey, name);
+//        super.onSaveInstanceState(outState);
+//    }
+//    // получение ранее сохраненного состояния
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//
+//        name = savedInstanceState.getString(nameVariableKey);
+//        nameView.setText(name);
+//    }
+//    public void saveName(View view) {
+//
+//        // получаем введенное имя
+//        EditText nameBox = findViewById(R.id.nameBox);
+//        //  сохраняем его в переменную name
+//        name = nameBox.getText().toString();
+//    }
+//    public void getName(View view) {
+//
+//        //  выводим сохраненное имя
+//        nameView.setText(name);
+//    }
+
     }
 
     // сохранение состояния
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        outState.putString(nameVariableKey, name);
+        outState.putSerializable(userVariableKey, user);
         super.onSaveInstanceState(outState);
     }
     // получение ранее сохраненного состояния
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
-        name = savedInstanceState.getString(nameVariableKey);
-        nameView.setText(name);
+        // получаем объект User в переменную
+        user = (User)savedInstanceState.getSerializable(userVariableKey);
+        TextView dataView = findViewById(R.id.dataView);
+        dataView.setText("Name: " + user.getName() + " Age: " + user.getAge());
     }
-    public void saveName(View view) {
+    public void saveData(View view) {
 
-        // получаем введенное имя
+        // получаем введенные данные
         EditText nameBox = findViewById(R.id.nameBox);
-        //  сохраняем его в переменную name
-        name = nameBox.getText().toString();
+        EditText yearBox = findViewById(R.id.yearBox);
+        String name = nameBox.getText().toString();
+        int age = 0;  // значение по умолчанию, если пользователь ввел некорректные данные
+        try{
+            age = Integer.parseInt(yearBox.getText().toString());
+        }
+        catch (NumberFormatException ex){}
+        user = new User(name, age);
     }
-    public void getName(View view) {
+    public void getData(View view) {
 
-        //  выводим сохраненное имя
-        nameView.setText(name);
+        // получаем сохраненные данные
+        TextView dataView = findViewById(R.id.dataView);
+        dataView.setText("Name: " + user.getName() + " Age: " + user.getAge());
     }
 }
