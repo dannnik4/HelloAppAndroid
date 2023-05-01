@@ -105,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String PREFS_FILE = "Account";
     private static final String PREF_NAME = "Name";
+    EditText nameBox;
     SharedPreferences settings;
+    SharedPreferences.Editor prefEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1376,24 +1378,50 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
+//        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+//    }
+//
+//    public void saveName(View view) {
+//        // получаем введенное имя
+//        EditText nameBox = findViewById(R.id.nameBox);
+//        String name = nameBox.getText().toString();
+//        // сохраняем его в настройках
+//        SharedPreferences.Editor prefEditor = settings.edit();
+//        prefEditor.putString(PREF_NAME, name);
+//        prefEditor.apply();
+//    }
+//
+//    public void getName(View view) {
+//        // получаем сохраненное имя
+//        TextView nameView = findViewById(R.id.nameView);
+//        String name = settings.getString(PREF_NAME,"не определено");
+//        nameView.setText(name);
+//    }
 
+        nameBox = findViewById(R.id.nameBox);
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+
+        // получаем настройки
+        String name = settings.getString(PREF_NAME,"");
+        nameBox.setText(name);
     }
 
-    public void saveName(View view) {
-        // получаем введенное имя
-        EditText nameBox = findViewById(R.id.nameBox);
+    @Override
+    protected void onPause(){
+        super.onPause();
+
         String name = nameBox.getText().toString();
-        // сохраняем его в настройках
-        SharedPreferences.Editor prefEditor = settings.edit();
+        // сохраняем в настройках
+        prefEditor = settings.edit();
         prefEditor.putString(PREF_NAME, name);
         prefEditor.apply();
     }
 
+    public void saveName(View view) {
+
+    }
+
     public void getName(View view) {
-        // получаем сохраненное имя
-        TextView nameView = findViewById(R.id.nameView);
-        String name = settings.getString(PREF_NAME,"не определено");
-        nameView.setText(name);
+
     }
 }
