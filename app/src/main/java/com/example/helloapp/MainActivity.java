@@ -10,6 +10,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -91,14 +92,27 @@ public class MainActivity extends AppCompatActivity {
     //TextView textView;
 
 //    VideoView videoPlayer;
-    MediaPlayer mPlayer;
-    Button playButton, pauseButton, stopButton;
-    SeekBar volumeControl;
-    AudioManager audioManager;
+//    MediaPlayer mPlayer;
+//    Button playButton, pauseButton, stopButton;
+//    SeekBar volumeControl;
+//    AudioManager audioManager;
+
+//    String name ="undefined";
+//    final static String nameVariableKey = "NAME_VARIABLE";
+//    TextView nameView;
+//    User user = new User("undefined", 0);
+//    final static String userVariableKey = "USER_VARIABLE";
+
+    private static final String PREFS_FILE = "Account";
+    private static final String PREF_NAME = "Name";
+    EditText nameBox;
+    SharedPreferences settings;
+    SharedPreferences.Editor prefEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.audio_seekbar);
+        setContentView(R.layout.sharedpreferences);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1218,86 +1232,80 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-    mPlayer=MediaPlayer.create(this, R.raw.music);
-        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-            stopPlay();
-        }
-    });
-    playButton = findViewById(R.id.playButton);
-    pauseButton = findViewById(R.id.pauseButton);
-    stopButton = findViewById(R.id.stopButton);
-
-    audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-    int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-    int curValue = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-
-    volumeControl = findViewById(R.id.volumeControl);
-        volumeControl.setMax(maxVolume);
-        volumeControl.setProgress(curValue);
-        volumeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
-        }
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
-    });
-
-        pauseButton.setEnabled(false);
-        stopButton.setEnabled(false);
-}
-    private void stopPlay(){
-        mPlayer.stop();
-        pauseButton.setEnabled(false);
-        stopButton.setEnabled(false);
-        try {
-            mPlayer.prepare();
-            mPlayer.seekTo(0);
-            playButton.setEnabled(true);
-        }
-        catch (Throwable t) {
-            Toast.makeText(this, t.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void play(View view){
-
-        mPlayer.start();
-        playButton.setEnabled(false);
-        pauseButton.setEnabled(true);
-        stopButton.setEnabled(true);
-    }
-    public void pause(View view){
-
-        mPlayer.pause();
-        playButton.setEnabled(true);
-        pauseButton.setEnabled(false);
-        stopButton.setEnabled(true);
-    }
-    public void stop(View view){
-        stopPlay();
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mPlayer.isPlaying()) {
-            stopPlay();
-        }
-    }
-    
-        String name ="undefined";
-    final static String nameVariableKey = "NAME_VARIABLE";
-    TextView nameView;
-    User user = new User("undefined", 0);
-    final static String userVariableKey = "USER_VARIABLE";
+//    mPlayer=MediaPlayer.create(this, R.raw.music);
+//        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//        @Override
+//        public void onCompletion(MediaPlayer mp) {
+//            stopPlay();
+//        }
+//    });
+//    playButton = findViewById(R.id.playButton);
+//    pauseButton = findViewById(R.id.pauseButton);
+//    stopButton = findViewById(R.id.stopButton);
+//
+//    audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+//    int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+//    int curValue = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+//
+//    volumeControl = findViewById(R.id.volumeControl);
+//        volumeControl.setMax(maxVolume);
+//        volumeControl.setProgress(curValue);
+//        volumeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//        @Override
+//        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
+//        }
+//        @Override
+//        public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//        }
+//        @Override
+//        public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//        }
+//    });
+//
+//        pauseButton.setEnabled(false);
+//        stopButton.setEnabled(false);
+//}
+//    private void stopPlay(){
+//        mPlayer.stop();
+//        pauseButton.setEnabled(false);
+//        stopButton.setEnabled(false);
+//        try {
+//            mPlayer.prepare();
+//            mPlayer.seekTo(0);
+//            playButton.setEnabled(true);
+//        }
+//        catch (Throwable t) {
+//            Toast.makeText(this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//    public void play(View view){
+//
+//        mPlayer.start();
+//        playButton.setEnabled(false);
+//        pauseButton.setEnabled(true);
+//        stopButton.setEnabled(true);
+//    }
+//    public void pause(View view){
+//
+//        mPlayer.pause();
+//        playButton.setEnabled(true);
+//        pauseButton.setEnabled(false);
+//        stopButton.setEnabled(true);
+//    }
+//    public void stop(View view){
+//        stopPlay();
+//    }
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        if (mPlayer.isPlaying()) {
+//            stopPlay();
+//        }
+//    }
 
 //        nameView = findViewById(R.id.nameView);
 //    }
@@ -1331,42 +1339,89 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
+//    }
+//
+//    // сохранение состояния
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//
+//        outState.putSerializable(userVariableKey, user);
+//        super.onSaveInstanceState(outState);
+//    }
+//    // получение ранее сохраненного состояния
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        // получаем объект User в переменную
+//        user = (User)savedInstanceState.getSerializable(userVariableKey);
+//        TextView dataView = findViewById(R.id.dataView);
+//        dataView.setText("Name: " + user.getName() + " Age: " + user.getAge());
+//    }
+//    public void saveData(View view) {
+//
+//        // получаем введенные данные
+//        EditText nameBox = findViewById(R.id.nameBox);
+//        EditText yearBox = findViewById(R.id.yearBox);
+//        String name = nameBox.getText().toString();
+//        int age = 0;  // значение по умолчанию, если пользователь ввел некорректные данные
+//        try{
+//            age = Integer.parseInt(yearBox.getText().toString());
+//        }
+//        catch (NumberFormatException ex){}
+//        user = new User(name, age);
+//    }
+//    public void getData(View view) {
+//
+//        // получаем сохраненные данные
+//        TextView dataView = findViewById(R.id.dataView);
+//        dataView.setText("Name: " + user.getName() + " Age: " + user.getAge());
+//    }
 
+
+//        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+//    }
+//
+//    public void saveName(View view) {
+//        // получаем введенное имя
+//        EditText nameBox = findViewById(R.id.nameBox);
+//        String name = nameBox.getText().toString();
+//        // сохраняем его в настройках
+//        SharedPreferences.Editor prefEditor = settings.edit();
+//        prefEditor.putString(PREF_NAME, name);
+//        prefEditor.apply();
+//    }
+//
+//    public void getName(View view) {
+//        // получаем сохраненное имя
+//        TextView nameView = findViewById(R.id.nameView);
+//        String name = settings.getString(PREF_NAME,"не определено");
+//        nameView.setText(name);
+//    }
+
+        nameBox = findViewById(R.id.nameBox);
+        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+
+        // получаем настройки
+        String name = settings.getString(PREF_NAME,"");
+        nameBox.setText(name);
     }
 
-    // сохранение состояния
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onPause(){
+        super.onPause();
 
-        outState.putSerializable(userVariableKey, user);
-        super.onSaveInstanceState(outState);
-    }
-    // получение ранее сохраненного состояния
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        // получаем объект User в переменную
-        user = (User)savedInstanceState.getSerializable(userVariableKey);
-        TextView dataView = findViewById(R.id.dataView);
-        dataView.setText("Name: " + user.getName() + " Age: " + user.getAge());
-    }
-    public void saveData(View view) {
-
-        // получаем введенные данные
-        EditText nameBox = findViewById(R.id.nameBox);
-        EditText yearBox = findViewById(R.id.yearBox);
         String name = nameBox.getText().toString();
-        int age = 0;  // значение по умолчанию, если пользователь ввел некорректные данные
-        try{
-            age = Integer.parseInt(yearBox.getText().toString());
-        }
-        catch (NumberFormatException ex){}
-        user = new User(name, age);
+        // сохраняем в настройках
+        prefEditor = settings.edit();
+        prefEditor.putString(PREF_NAME, name);
+        prefEditor.apply();
     }
-    public void getData(View view) {
 
-        // получаем сохраненные данные
-        TextView dataView = findViewById(R.id.dataView);
-        dataView.setText("Name: " + user.getName() + " Age: " + user.getAge());
+    public void saveName(View view) {
+
+    }
+
+    public void getName(View view) {
+
     }
 }
