@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.preference.PreferenceManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -103,16 +104,20 @@ public class MainActivity extends AppCompatActivity {
 //    User user = new User("undefined", 0);
 //    final static String userVariableKey = "USER_VARIABLE";
 
-    private static final String PREFS_FILE = "Account";
-    private static final String PREF_NAME = "Name";
-    EditText nameBox;
-    SharedPreferences settings;
-    SharedPreferences.Editor prefEditor;
+//    private static final String PREFS_FILE = "Account";
+//    private static final String PREF_NAME = "Name";
+//    EditText nameBox;
+//    SharedPreferences settings;
+//    SharedPreferences.Editor prefEditor;
+
+    TextView settingsText;
+    boolean enabled;
+    String login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sharedpreferences);
+        setContentView(R.layout.settings_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1398,30 +1403,52 @@ public class MainActivity extends AppCompatActivity {
 //        nameView.setText(name);
 //    }
 
-        nameBox = findViewById(R.id.nameBox);
-        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+//        nameBox = findViewById(R.id.nameBox);
+//        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+//
+//        // получаем настройки
+//        String name = settings.getString(PREF_NAME,"");
+//        nameBox.setText(name);
+//    }
+//
+//    @Override
+//    protected void onPause(){
+//        super.onPause();
+//
+//        String name = nameBox.getText().toString();
+//        // сохраняем в настройках
+//        prefEditor = settings.edit();
+//        prefEditor.putString(PREF_NAME, name);
+//        prefEditor.apply();
+//    }
+//
+//    public void saveName(View view) {
+//
+//    }
+//
+//    public void getName(View view) {
+//
+//    }
 
-        // получаем настройки
-        String name = settings.getString(PREF_NAME,"");
-        nameBox.setText(name);
+
+        settingsText = findViewById(R.id.settingsText);
     }
 
     @Override
-    protected void onPause(){
-        super.onPause();
-
-        String name = nameBox.getText().toString();
-        // сохраняем в настройках
-        prefEditor = settings.edit();
-        prefEditor.putString(PREF_NAME, name);
-        prefEditor.apply();
+    public void onResume() {
+        super.onResume();
+        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
+        enabled = prefs.getBoolean("enabled", false);
+        login = prefs.getString("login", "не установлено");
+        settingsText.setText(login);
+        if(enabled)
+            settingsText.setVisibility(View.VISIBLE);
+        else
+            settingsText.setVisibility(View.INVISIBLE);
     }
 
-    public void saveName(View view) {
-
-    }
-
-    public void getName(View view) {
-
+    public void setPrefs(View view){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 }
