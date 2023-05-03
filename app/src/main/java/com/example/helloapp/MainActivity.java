@@ -7,7 +7,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.preference.PreferenceManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -53,6 +52,8 @@ import android.content.Intent;
 import android.widget.ImageView;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -110,14 +111,16 @@ public class MainActivity extends AppCompatActivity {
 //    SharedPreferences settings;
 //    SharedPreferences.Editor prefEditor;
 
-    TextView settingsText;
-    boolean enabled;
-    String login;
+//    TextView settingsText;
+//    boolean enabled;
+//    String login;
+
+    private final static String FILE_NAME = "content.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_layout);
+        setContentView(R.layout.files_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1431,24 +1434,82 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-        settingsText = findViewById(R.id.settingsText);
-    }
+//        settingsText = findViewById(R.id.settingsText);
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
+//        enabled = prefs.getBoolean("enabled", false);
+//        login = prefs.getString("login", "не установлено");
+//        settingsText.setText(login);
+//        if(enabled)
+//            settingsText.setVisibility(View.VISIBLE);
+//        else
+//            settingsText.setVisibility(View.INVISIBLE);
+//    }
+//
+//    public void setPrefs(View view){
+//        Intent intent = new Intent(this, SettingsActivity.class);
+//        startActivity(intent);
+//    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
-        enabled = prefs.getBoolean("enabled", false);
-        login = prefs.getString("login", "не установлено");
-        settingsText.setText(login);
-        if(enabled)
-            settingsText.setVisibility(View.VISIBLE);
-        else
-            settingsText.setVisibility(View.INVISIBLE);
-    }
 
-    public void setPrefs(View view){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
+    }
+    // сохранение файла
+    public void saveText(View view){
+
+        FileOutputStream fos = null;
+        try {
+            EditText textBox = findViewById(R.id.editor);
+            String text = textBox.getText().toString();
+
+            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+            fos.write(text.getBytes());
+            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+        }
+        catch(IOException ex) {
+
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        finally{
+            try{
+                if(fos!=null)
+                    fos.close();
+            }
+            catch(IOException ex){
+
+                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    // открытие файла
+    public void openText(View view){
+
+        FileInputStream fin = null;
+        TextView textView = findViewById(R.id.text);
+        try {
+            fin = openFileInput(FILE_NAME);
+            byte[] bytes = new byte[fin.available()];
+            fin.read(bytes);
+            String text = new String (bytes);
+            textView.setText(text);
+        }
+        catch(IOException ex) {
+
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        finally{
+
+            try{
+                if(fin!=null)
+                    fin.close();
+            }
+            catch(IOException ex){
+
+                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
