@@ -52,6 +52,7 @@ import android.content.Intent;
 import android.widget.ImageView;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -115,12 +116,14 @@ public class MainActivity extends AppCompatActivity {
 //    boolean enabled;
 //    String login;
 
-    private final static String FILE_NAME = "content.txt";
+//    private final static String FILE_NAME = "content.txt";
+
+    private final static String FILE_NAME = "document.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.files_layout);
+        setContentView(R.layout.document_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1456,16 +1459,74 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
+//    }
+//    // сохранение файла
+//    public void saveText(View view){
+//
+//        FileOutputStream fos = null;
+//        try {
+//            EditText textBox = findViewById(R.id.editor);
+//            String text = textBox.getText().toString();
+//
+//            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+//            fos.write(text.getBytes());
+//            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//        finally{
+//            try{
+//                if(fos!=null)
+//                    fos.close();
+//            }
+//            catch(IOException ex){
+//
+//                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+//    // открытие файла
+//    public void openText(View view){
+//
+//        FileInputStream fin = null;
+//        TextView textView = findViewById(R.id.text);
+//        try {
+//            fin = openFileInput(FILE_NAME);
+//            byte[] bytes = new byte[fin.available()];
+//            fin.read(bytes);
+//            String text = new String (bytes);
+//            textView.setText(text);
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//        finally{
+//
+//            try{
+//                if(fin!=null)
+//                    fin.close();
+//            }
+//            catch(IOException ex){
+//
+//                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+
+
+    }
+    private File getExternalPath() {
+        return new File(getExternalFilesDir(null), FILE_NAME);
     }
     // сохранение файла
     public void saveText(View view){
 
-        FileOutputStream fos = null;
-        try {
+        try(FileOutputStream fos = new FileOutputStream(getExternalPath())) {
             EditText textBox = findViewById(R.id.editor);
             String text = textBox.getText().toString();
-
-            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
             fos.write(text.getBytes());
             Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
         }
@@ -1473,24 +1534,15 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        finally{
-            try{
-                if(fos!=null)
-                    fos.close();
-            }
-            catch(IOException ex){
-
-                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
     }
     // открытие файла
     public void openText(View view){
 
-        FileInputStream fin = null;
         TextView textView = findViewById(R.id.text);
-        try {
-            fin = openFileInput(FILE_NAME);
+        File file = getExternalPath();
+        // если файл не существует, выход из метода
+        if(!file.exists()) return;
+        try(FileInputStream fin =  new FileInputStream(file)) {
             byte[] bytes = new byte[fin.available()];
             fin.read(bytes);
             String text = new String (bytes);
@@ -1499,17 +1551,6 @@ public class MainActivity extends AppCompatActivity {
         catch(IOException ex) {
 
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        finally{
-
-            try{
-                if(fin!=null)
-                    fin.close();
-            }
-            catch(IOException ex){
-
-                Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-            }
         }
     }
 }
