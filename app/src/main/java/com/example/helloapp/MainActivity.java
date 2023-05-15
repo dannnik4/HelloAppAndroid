@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -118,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
 //    private final static String FILE_NAME = "content.txt";
 
-    private final static String FILE_NAME = "document.txt";
+//    private final static String FILE_NAME = "document.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.document_layout);
+        setContentView(R.layout.sqlite_connect);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1517,40 +1520,58 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
+//    }
+//    private File getExternalPath() {
+//        return new File(getExternalFilesDir(null), FILE_NAME);
+//    }
+//    // сохранение файла
+//    public void saveText(View view){
+//
+//        try(FileOutputStream fos = new FileOutputStream(getExternalPath())) {
+//            EditText textBox = findViewById(R.id.editor);
+//            String text = textBox.getText().toString();
+//            fos.write(text.getBytes());
+//            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//    // открытие файла
+//    public void openText(View view){
+//
+//        TextView textView = findViewById(R.id.text);
+//        File file = getExternalPath();
+//        // если файл не существует, выход из метода
+//        if(!file.exists()) return;
+//        try(FileInputStream fin =  new FileInputStream(file)) {
+//            byte[] bytes = new byte[fin.available()];
+//            fin.read(bytes);
+//            String text = new String (bytes);
+//            textView.setText(text);
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+        
+        
     }
-    private File getExternalPath() {
-        return new File(getExternalFilesDir(null), FILE_NAME);
-    }
-    // сохранение файла
-    public void saveText(View view){
+    public void onClick(View view){
+        SQLiteDatabase db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS users (name TEXT, age INTEGER, UNIQUE(name))");
+        db.execSQL("INSERT OR IGNORE INTO users VALUES ('Tom Smith', 23), ('John Dow', 31);");
 
-        try(FileOutputStream fos = new FileOutputStream(getExternalPath())) {
-            EditText textBox = findViewById(R.id.editor);
-            String text = textBox.getText().toString();
-            fos.write(text.getBytes());
-            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+        Cursor query = db.rawQuery("SELECT * FROM users;", null);
+        TextView textView = findViewById(R.id.textView);
+        textView.setText("");
+        while(query.moveToNext()){
+            String name = query.getString(0);
+            int age = query.getInt(1);
+            textView.append("Name: " + name + " Age: " + age + "\n");
         }
-        catch(IOException ex) {
-
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-    // открытие файла
-    public void openText(View view){
-
-        TextView textView = findViewById(R.id.text);
-        File file = getExternalPath();
-        // если файл не существует, выход из метода
-        if(!file.exists()) return;
-        try(FileInputStream fin =  new FileInputStream(file)) {
-            byte[] bytes = new byte[fin.available()];
-            fin.read(bytes);
-            String text = new String (bytes);
-            textView.setText(text);
-        }
-        catch(IOException ex) {
-
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        query.close();
+        db.close();
     }
 }
