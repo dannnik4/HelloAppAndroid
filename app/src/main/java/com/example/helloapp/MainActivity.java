@@ -1,74 +1,13 @@
 package com.example.helloapp;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.webkit.WebView;
-import android.widget.LinearLayout;
-import android.widget.MediaController;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.FrameLayout;
-import android.widget.GridLayout;
-import android.view.ViewGroup;
-import android.widget.ScrollView;
-import android.graphics.Typeface;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.Button;
-import android.widget.Toast;
-import android.widget.CompoundButton;
-import android.widget.CheckBox;
-import android.widget.ToggleButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
-import android.widget.SeekBar;
-import android.content.res.Resources;
-import android.app.Activity;
-import android.content.Intent;
-import android.widget.ImageView;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.Calendar;
-import java.util.Locale;
-
-import android.util.Log;
-import android.widget.VideoView;
-
-import javax.net.ssl.HttpsURLConnection;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -123,10 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
 //    private final static String FILE_NAME = "document.txt";
 
+    ListView userList;
+    TextView header;
+    DatabaseHelper databaseHelper;
+    SQLiteDatabase db;
+    Cursor userCursor;
+    SimpleCursorAdapter userAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sqlite_connect);
+        setContentView(R.layout.sqlite_recieve);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1555,23 +1501,54 @@ public class MainActivity extends AppCompatActivity {
 //
 //            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
 //        }
-        
-        
-    }
-    public void onClick(View view){
-        SQLiteDatabase db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS users (name TEXT, age INTEGER, UNIQUE(name))");
-        db.execSQL("INSERT OR IGNORE INTO users VALUES ('Tom Smith', 23), ('John Dow', 31);");
 
-        Cursor query = db.rawQuery("SELECT * FROM users;", null);
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("");
-        while(query.moveToNext()){
-            String name = query.getString(0);
-            int age = query.getInt(1);
-            textView.append("Name: " + name + " Age: " + age + "\n");
-        }
-        query.close();
+
+//    }
+//    public void onClick(View view){
+//        SQLiteDatabase db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+//        db.execSQL("CREATE TABLE IF NOT EXISTS users (name TEXT, age INTEGER, UNIQUE(name))");
+//        db.execSQL("INSERT OR IGNORE INTO users VALUES ('Tom Smith', 23), ('John Dow', 31);");
+//
+//        Cursor query = db.rawQuery("SELECT * FROM users;", null);
+//        TextView textView = findViewById(R.id.textView);
+//        textView.setText("");
+//        while(query.moveToNext()){
+//            String name = query.getString(0);
+//            int age = query.getInt(1);
+//            textView.append("Name: " + name + " Age: " + age + "\n");
+//        }
+//        query.close();
+//        db.close();
+//    }
+
+
+        header = findViewById(R.id.header);
+        userList = findViewById(R.id.list);
+
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // открываем подключение
+        db = databaseHelper.getReadableDatabase();
+
+        //получаем данные из бд в виде курсора
+        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE, null);
+        // определяем, какие столбцы из курсора будут выводиться в ListView
+        String[] headers = new String[] {DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
+        // создаем адаптер, передаем в него курсор
+        userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
+                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
+        header.setText("Найдено элементов: " +  userCursor.getCount());
+        userList.setAdapter(userAdapter);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        // Закрываем подключение и курсор
         db.close();
+        userCursor.close();
     }
 }
