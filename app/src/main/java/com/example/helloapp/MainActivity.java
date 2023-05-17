@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private final static String TAG = "MainActivity";
+//    private final static String TAG = "MainActivity";
 
 //    static final String AGE_KEY = "AGE";
 //    static final String ACCESS_MESSAGE="ACCESS_MESSAGE";
@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            });
 
-    //EditText editText;
-    //TextView textView;
+//    EditText editText;
+//    TextView textView;
 
 //    VideoView videoPlayer;
 //    MediaPlayer mPlayer;
