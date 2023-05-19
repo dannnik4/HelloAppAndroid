@@ -1,8 +1,11 @@
 package com.example.helloapp;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sqlite_recieve);
+        setContentView(R.layout.contentvalues_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1522,11 +1525,50 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-        header = findViewById(R.id.header);
-        userList = findViewById(R.id.list);
+//        header = findViewById(R.id.header);
+//        userList = findViewById(R.id.list);
+//
+//        databaseHelper = new DatabaseHelper(getApplicationContext());
+//    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        // открываем подключение
+//        db = databaseHelper.getReadableDatabase();
+//
+//        //получаем данные из бд в виде курсора
+//        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE, null);
+//        // определяем, какие столбцы из курсора будут выводиться в ListView
+//        String[] headers = new String[] {DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
+//        // создаем адаптер, передаем в него курсор
+//        userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
+//                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
+//        header.setText("Найдено элементов: " +  userCursor.getCount());
+//        userList.setAdapter(userAdapter);
+//    }
+//
+//    @Override
+//    public void onDestroy(){
+//        super.onDestroy();
+//        // Закрываем подключение и курсор
+//        db.close();
+//        userCursor.close();
+//    }
 
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-    }
+
+    userList = findViewById(R.id.list);
+        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+            intent.putExtra("id", id);
+            startActivity(intent);
+        }
+    });
+
+    databaseHelper = new DatabaseHelper(getApplicationContext());
+}
+
     @Override
     public void onResume() {
         super.onResume();
@@ -1534,18 +1576,23 @@ public class MainActivity extends AppCompatActivity {
         db = databaseHelper.getReadableDatabase();
 
         //получаем данные из бд в виде курсора
-        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE, null);
+        userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE, null);
         // определяем, какие столбцы из курсора будут выводиться в ListView
-        String[] headers = new String[] {DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
+        String[] headers = new String[]{DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
         // создаем адаптер, передаем в него курсор
         userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
                 userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
-        header.setText("Найдено элементов: " +  userCursor.getCount());
         userList.setAdapter(userAdapter);
     }
 
+    // по нажатию на кнопку запускаем UserActivity для добавления данных
+    public void add(View view) {
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         // Закрываем подключение и курсор
         db.close();
