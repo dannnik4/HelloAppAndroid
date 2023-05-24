@@ -16,6 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
 public class MainActivity extends AppCompatActivity {
 
 //    private final static String TAG = "MainActivity";
@@ -69,20 +73,20 @@ public class MainActivity extends AppCompatActivity {
 
 //    private final static String FILE_NAME = "document.txt";
 
-    ListView userList;
-    TextView header;
-    DatabaseHelper databaseHelper;
-    DatabaseHelper sqlHelper;
-    SQLiteDatabase db;
-    Cursor userCursor;
-    SimpleCursorAdapter userAdapter;
-    EditText userFilter;
-    ArrayAdapter<User> arrayAdapter;
+//    ListView userList;
+//    TextView header;
+//    DatabaseHelper databaseHelper;
+//    DatabaseHelper sqlHelper;
+//    SQLiteDatabase db;
+//    Cursor userCursor;
+//    SimpleCursorAdapter userAdapter;
+//    EditText userFilter;
+//    ArrayAdapter<User> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sqlite_model);
+        setContentView(R.layout.viewpager_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1717,36 +1721,42 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-        userList = findViewById(R.id.list);
-
-        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                User user =arrayAdapter.getItem(position);
-                if(user!=null) {
-                    Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-                    intent.putExtra("id", user.getId());
-                    startActivity(intent);
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        DatabaseAdapter adapter = new DatabaseAdapter(this);
-        adapter.open();
-
-        List<User> users = adapter.getUsers();
-
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
-        userList.setAdapter(arrayAdapter);
-        adapter.close();
-    }
-    // по нажатию на кнопку запускаем UserActivity для добавления данных
-    public void add(View view){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
+//        userList = findViewById(R.id.list);
+//
+//        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                User user =arrayAdapter.getItem(position);
+//                if(user!=null) {
+//                    Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+//                    intent.putExtra("id", user.getId());
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+//    }
+//
+//     @Override
+//     public void onResume() {
+//         super.onResume();
+//         DatabaseAdapter adapter = new DatabaseAdapter(this);
+//         adapter.open();
+//
+//         List<User> users = adapter.getUsers();
+//
+//         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
+//         userList.setAdapter(arrayAdapter);
+//         adapter.close();
+//     }
+//     // по нажатию на кнопку запускаем UserActivity для добавления данных
+//     public void add(View view){
+//         Intent intent = new Intent(this, UserActivity.class);
+//         startActivity(intent);
+//     }
+  
+  
+  ViewPager2 pager = findViewById(R.id.pager);
+        FragmentStateAdapter pageAdapter = new MyAdapter(this);
+        pager.setAdapter(pageAdapter);
     }
 }
