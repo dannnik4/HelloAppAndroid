@@ -1,24 +1,13 @@
 package com.example.helloapp;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.viewpager_layout);
+        setContentView(R.layout.title_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1755,8 +1744,24 @@ public class MainActivity extends AppCompatActivity {
 //     }
   
   
-  ViewPager2 pager = findViewById(R.id.pager);
+//  ViewPager2 pager = findViewById(R.id.pager);
+//        FragmentStateAdapter pageAdapter = new MyAdapter(this);
+//        pager.setAdapter(pageAdapter);
+//    }
+
+
+        ViewPager2 pager = findViewById(R.id.pager);
         FragmentStateAdapter pageAdapter = new MyAdapter(this);
         pager.setAdapter(pageAdapter);
+
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        TabLayoutMediator tabLayoutMediator= new TabLayoutMediator(tabLayout, pager, new TabLayoutMediator.TabConfigurationStrategy(){
+
+            @Override
+            public void onConfigureTab(TabLayout.Tab tab, int position) {
+                tab.setText("Страница " + (position + 1));
+            }
+        });
+        tabLayoutMediator.attach();
     }
 }
