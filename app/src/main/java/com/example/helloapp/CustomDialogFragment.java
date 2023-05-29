@@ -25,11 +25,23 @@ public class CustomDialogFragment extends DialogFragment {
 //                .create();
 //    }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        return builder
+//                .setTitle("Диалоговое окно")
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+//                .setView(R.layout.dialog)
+//                .setPositiveButton("OK", null)
+//                .setNegativeButton("Отмена", null)
+//                .create();
+//    }
+
+
+        String phone = getArguments().getString("phone");
+        AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         return builder
                 .setTitle("Диалоговое окно")
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setView(R.layout.dialog)
+                .setMessage("Вы хотите удалить " + phone + "?")
                 .setPositiveButton("OK", null)
                 .setNegativeButton("Отмена", null)
                 .create();
