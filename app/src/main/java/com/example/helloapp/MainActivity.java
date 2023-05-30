@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Removable{
 
 //    private final static String TAG = "MainActivity";
 
@@ -76,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
 //    TextView currentDateTime;
 //    Calendar dateAndTime=Calendar.getInstance();
 
+    private ArrayAdapter<String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialogrecieve_layout);
+        setContentView(R.layout.dialogdo_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1848,7 +1850,24 @@ public class MainActivity extends AppCompatActivity {
         phones.add("LG G5");
         phones.add("Samsung Galaxy S8");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phones);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phones);
+//        phonesList.setAdapter(adapter);
+//
+//        phonesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                String selectedPhone = adapter.getItem(position);
+//                CustomDialogFragment dialog = new CustomDialogFragment();
+//                Bundle args = new Bundle();
+//                args.putString("phone", selectedPhone);
+//                dialog.setArguments(args);
+//                dialog.show(getSupportFragmentManager(), "custom");
+//            }
+//        });
+//    }
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phones);
         phonesList.setAdapter(adapter);
 
         phonesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -1863,5 +1882,9 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(), "custom");
             }
         });
+    }
+    @Override
+    public void remove(String name) {
+        adapter.remove(name);
     }
 }
