@@ -1,16 +1,13 @@
 package com.example.helloapp;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements Removable{
+public class MainActivity extends AppCompatActivity{
 
 //    private final static String TAG = "MainActivity";
 
@@ -76,12 +73,12 @@ public class MainActivity extends AppCompatActivity implements Removable{
 //    TextView currentDateTime;
 //    Calendar dateAndTime=Calendar.getInstance();
 
-    private ArrayAdapter<String> adapter;
+//    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialogdo_layout);
+        setContentView(R.layout.animation_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1843,12 +1840,12 @@ public class MainActivity extends AppCompatActivity implements Removable{
 //    }
 
 
-        ListView phonesList = findViewById(R.id.phonesList);
-        ArrayList<String> phones = new ArrayList<>();
-        phones.add("Google Pixel");
-        phones.add("Huawei P9");
-        phones.add("LG G5");
-        phones.add("Samsung Galaxy S8");
+//        ListView phonesList = findViewById(R.id.phonesList);
+//        ArrayList<String> phones = new ArrayList<>();
+//        phones.add("Google Pixel");
+//        phones.add("Huawei P9");
+//        phones.add("LG G5");
+//        phones.add("Samsung Galaxy S8");
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phones);
 //        phonesList.setAdapter(adapter);
@@ -1867,24 +1864,40 @@ public class MainActivity extends AppCompatActivity implements Removable{
 //        });
 //    }
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phones);
-        phonesList.setAdapter(adapter);
+//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phones);
+//        phonesList.setAdapter(adapter);
+//
+//        phonesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                String selectedPhone = adapter.getItem(position);
+//                CustomDialogFragment dialog = new CustomDialogFragment();
+//                Bundle args = new Bundle();
+//                args.putString("phone", selectedPhone);
+//                dialog.setArguments(args);
+//                dialog.show(getSupportFragmentManager(), "custom");
+//            }
+//        });
+//    }
+//    @Override
+//    public void remove(String name) {
+//        adapter.remove(name);
+//    }
 
-        phonesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        ImageView img = findViewById(R.id.animationView);
+        // устанавливаем ресурс анимации
+        img.setBackgroundResource(R.drawable.animation);
+        // получаем объект анимации
+        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+        // по нажатию на ImageView
+        img.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                String selectedPhone = adapter.getItem(position);
-                CustomDialogFragment dialog = new CustomDialogFragment();
-                Bundle args = new Bundle();
-                args.putString("phone", selectedPhone);
-                dialog.setArguments(args);
-                dialog.show(getSupportFragmentManager(), "custom");
+            public void onClick(View view) {
+                // запускаем анимацию
+                frameAnimation.start();
             }
         });
-    }
-    @Override
-    public void remove(String name) {
-        adapter.remove(name);
     }
 }
