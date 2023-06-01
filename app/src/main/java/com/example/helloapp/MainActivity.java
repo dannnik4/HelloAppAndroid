@@ -1,8 +1,8 @@
 package com.example.helloapp;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.animation_layout);
+        setContentView(R.layout.imageview_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1886,18 +1886,28 @@ public class MainActivity extends AppCompatActivity{
 //    }
 
 
+//        ImageView img = findViewById(R.id.animationView);
+//        // устанавливаем ресурс анимации
+//        img.setBackgroundResource(R.drawable.animation);
+//        // получаем объект анимации
+//        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+//        // по нажатию на ImageView
+//        img.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // запускаем анимацию
+//                frameAnimation.start();
+//            }
+//        });
+//    }
+
+
         ImageView img = findViewById(R.id.animationView);
-        // устанавливаем ресурс анимации
-        img.setBackgroundResource(R.drawable.animation);
-        // получаем объект анимации
-        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-        // по нажатию на ImageView
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // запускаем анимацию
-                frameAnimation.start();
-            }
-        });
+        // определим для ImageView какое-нибудь изображение
+        img.setImageResource(R.drawable.dubi2);
+        // создаем анимацию
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.common_animation);
+        // запуск анимации
+        img.startAnimation(animation);
     }
 }
