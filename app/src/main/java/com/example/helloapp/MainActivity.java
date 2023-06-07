@@ -13,7 +13,7 @@ import androidx.loader.content.Loader;
 
 import java.security.InvalidParameterException;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
 //    private final static String TAG = "MainActivity";
 
