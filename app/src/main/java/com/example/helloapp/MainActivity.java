@@ -1,5 +1,16 @@
 package com.example.helloapp;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -87,13 +98,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 //    ArrayList<String> contacts = new ArrayList<>();
 //    Button addBtn;
 
-    private static final String TAG = "MainActivity";
-    private static final int LOADER_ID = 225;
+//     private static final String TAG = "MainActivity";
+//     private static final int LOADER_ID = 225;
+  
+    private ArrayAdapter<User> adapter;
+    private EditText nameText, ageText;
+    private List<User> users;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.provider_layout);
+        setContentView(R.layout.json_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1486,7 +1502,45 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 //        }
 //    }
 
+//
+//    }
+//    private File getExternalPath() {
+//        return new File(getExternalFilesDir(null), FILE_NAME);
+//    }
+//    // сохранение файла
+//    public void saveText(View view){
+//
+//        try(FileOutputStream fos = new FileOutputStream(getExternalPath())) {
+//            EditText textBox = findViewById(R.id.editor);
+//            String text = textBox.getText().toString();
+//            fos.write(text.getBytes());
+//            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//    // открытие файла
+//    public void openText(View view){
+//
+//        TextView textView = findViewById(R.id.text);
+//        File file = getExternalPath();
+//        // если файл не существует, выход из метода
+//        if(!file.exists()) return;
+//        try(FileInputStream fin =  new FileInputStream(file)) {
+//            byte[] bytes = new byte[fin.available()];
+//            fin.read(bytes);
+//            String text = new String (bytes);
+//            textView.setText(text);
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
+      
 //    }
 //    private File getExternalPath() {
 //        return new File(getExternalFilesDir(null), FILE_NAME);
@@ -2127,49 +2181,88 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 //    }
 
 
-        // запускаем загрузку данных через провайдер контента
-        LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
+//         // запускаем загрузку данных через провайдер контента
+//         LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
+//     }
+
+//     @NonNull
+//     @Override
+//     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+//         String[] projection = {
+//                 FriendsContract.Columns._ID,
+//                 FriendsContract.Columns.NAME,
+//                 FriendsContract.Columns.EMAIL,
+//                 FriendsContract.Columns.PHONE
+//         };
+//         if(id == LOADER_ID)
+//             return new CursorLoader(this, FriendsContract.CONTENT_URI,
+//                     projection,
+//                     null,
+//                     null,
+//                     FriendsContract.Columns.NAME);
+//         else
+//             throw new InvalidParameterException("Invalid loader id");
+//     }
+
+//     @Override
+//     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+//         if(data != null){
+//             Log.d(TAG, "count: " + data.getCount());
+//             // перебор элементов
+//             while(data.moveToNext()){
+//                 for(int i=0; i < data.getColumnCount(); i++){
+//                     Log.d(TAG, data.getColumnName(i) + " : " + data.getString(i));
+//                 }
+//                 Log.d(TAG, "=========================");
+//             }
+//             data.close();
+//         }
+//         else{
+//             Log.d(TAG, "Cursor is null");
+//         }
+//     }
+
+//     @Override
+//     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+//         Log.d(TAG, "onLoaderReset...");
+//     }
+      
+      
+              nameText = findViewById(R.id.nameText);
+        ageText = findViewById(R.id.ageText);
+        listView = findViewById(R.id.list);
+        users = new ArrayList<>();
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
+        listView.setAdapter(adapter);
     }
 
-    @NonNull
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        String[] projection = {
-                FriendsContract.Columns._ID,
-                FriendsContract.Columns.NAME,
-                FriendsContract.Columns.EMAIL,
-                FriendsContract.Columns.PHONE
-        };
-        if(id == LOADER_ID)
-            return new CursorLoader(this, FriendsContract.CONTENT_URI,
-                    projection,
-                    null,
-                    null,
-                    FriendsContract.Columns.NAME);
-        else
-            throw new InvalidParameterException("Invalid loader id");
+    public void addUser(View view){
+        String name = nameText.getText().toString();
+        int age = Integer.parseInt(ageText.getText().toString());
+        User user = new User(name, age);
+        users.add(user);
+        adapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        if(data != null){
-            Log.d(TAG, "count: " + data.getCount());
-            // перебор элементов
-            while(data.moveToNext()){
-                for(int i=0; i < data.getColumnCount(); i++){
-                    Log.d(TAG, data.getColumnName(i) + " : " + data.getString(i));
-                }
-                Log.d(TAG, "=========================");
-            }
-            data.close();
+    public void save(View view){
+
+        boolean result = JSONHelper.exportToJSON(this, users);
+        if(result){
+            Toast.makeText(this, "Данные сохранены", Toast.LENGTH_LONG).show();
         }
         else{
-            Log.d(TAG, "Cursor is null");
+            Toast.makeText(this, "Не удалось сохранить данные", Toast.LENGTH_LONG).show();
         }
     }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-        Log.d(TAG, "onLoaderReset...");
-    }
+    public void open(View view){
+        users = JSONHelper.importFromJSON(this);
+        if(users!=null){
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
+            listView.setAdapter(adapter);
+            Toast.makeText(this, "Данные восстановлены", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this, "Не удалось открыть данные", Toast.LENGTH_LONG).show();
+        }
 }
