@@ -1,71 +1,16 @@
 package com.example.helloapp;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.webkit.WebView;
-import android.widget.LinearLayout;
-import android.widget.MediaController;
-import android.widget.TextView;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.FrameLayout;
-import android.widget.GridLayout;
-import android.view.ViewGroup;
-import android.widget.ScrollView;
-import android.graphics.Typeface;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.CompoundButton;
-import android.widget.CheckBox;
-import android.widget.ToggleButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
-import android.widget.SeekBar;
-import android.content.res.Resources;
-import android.app.Activity;
-import android.content.Intent;
-import android.widget.ImageView;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.Calendar;
-import java.util.Locale;
+import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
-import android.widget.VideoView;
-
-import javax.net.ssl.HttpsURLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -118,12 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
 //    private final static String FILE_NAME = "content.txt";
 
-    private final static String FILE_NAME = "document.txt";
+//    private final static String FILE_NAME = "document.txt";
+
+    private ArrayAdapter<User> adapter;
+    private EditText nameText, ageText;
+    private List<User> users;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.document_layout);
+        setContentView(R.layout.json_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1516,41 +1466,81 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
+//
+//    }
+//    private File getExternalPath() {
+//        return new File(getExternalFilesDir(null), FILE_NAME);
+//    }
+//    // сохранение файла
+//    public void saveText(View view){
+//
+//        try(FileOutputStream fos = new FileOutputStream(getExternalPath())) {
+//            EditText textBox = findViewById(R.id.editor);
+//            String text = textBox.getText().toString();
+//            fos.write(text.getBytes());
+//            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//    // открытие файла
+//    public void openText(View view){
+//
+//        TextView textView = findViewById(R.id.text);
+//        File file = getExternalPath();
+//        // если файл не существует, выход из метода
+//        if(!file.exists()) return;
+//        try(FileInputStream fin =  new FileInputStream(file)) {
+//            byte[] bytes = new byte[fin.available()];
+//            fin.read(bytes);
+//            String text = new String (bytes);
+//            textView.setText(text);
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
+
+        nameText = findViewById(R.id.nameText);
+        ageText = findViewById(R.id.ageText);
+        listView = findViewById(R.id.list);
+        users = new ArrayList<>();
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
+        listView.setAdapter(adapter);
     }
-    private File getExternalPath() {
-        return new File(getExternalFilesDir(null), FILE_NAME);
+
+    public void addUser(View view){
+        String name = nameText.getText().toString();
+        int age = Integer.parseInt(ageText.getText().toString());
+        User user = new User(name, age);
+        users.add(user);
+        adapter.notifyDataSetChanged();
     }
-    // сохранение файла
-    public void saveText(View view){
 
-        try(FileOutputStream fos = new FileOutputStream(getExternalPath())) {
-            EditText textBox = findViewById(R.id.editor);
-            String text = textBox.getText().toString();
-            fos.write(text.getBytes());
-            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+    public void save(View view){
+
+        boolean result = JSONHelper.exportToJSON(this, users);
+        if(result){
+            Toast.makeText(this, "Данные сохранены", Toast.LENGTH_LONG).show();
         }
-        catch(IOException ex) {
-
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(this, "Не удалось сохранить данные", Toast.LENGTH_LONG).show();
         }
     }
-    // открытие файла
-    public void openText(View view){
-
-        TextView textView = findViewById(R.id.text);
-        File file = getExternalPath();
-        // если файл не существует, выход из метода
-        if(!file.exists()) return;
-        try(FileInputStream fin =  new FileInputStream(file)) {
-            byte[] bytes = new byte[fin.available()];
-            fin.read(bytes);
-            String text = new String (bytes);
-            textView.setText(text);
+    public void open(View view){
+        users = JSONHelper.importFromJSON(this);
+        if(users!=null){
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
+            listView.setAdapter(adapter);
+            Toast.makeText(this, "Данные восстановлены", Toast.LENGTH_LONG).show();
         }
-        catch(IOException ex) {
-
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(this, "Не удалось открыть данные", Toast.LENGTH_LONG).show();
         }
     }
 }
