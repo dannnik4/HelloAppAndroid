@@ -11,10 +11,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.util.Log;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
-    //private final static String TAG = "MainActivity";
+import java.security.InvalidParameterException;
+
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+//    private final static String TAG = "MainActivity";
 
 //    static final String AGE_KEY = "AGE";
 //    static final String ACCESS_MESSAGE="ACCESS_MESSAGE";
@@ -36,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            });
 
-    //EditText editText;
-    //TextView textView;
+//    EditText editText;
+//    TextView textView;
 
 //    VideoView videoPlayer;
 //    MediaPlayer mPlayer;
@@ -65,6 +77,30 @@ public class MainActivity extends AppCompatActivity {
 
 //    private final static String FILE_NAME = "document.txt";
 
+//    ListView userList;
+//    TextView header;
+//    DatabaseHelper databaseHelper;
+//    DatabaseHelper sqlHelper;
+//    SQLiteDatabase db;
+//    Cursor userCursor;
+//    SimpleCursorAdapter userAdapter;
+//    EditText userFilter;
+//    ArrayAdapter<User> arrayAdapter;
+
+//    TextView currentDateTime;
+//    Calendar dateAndTime=Calendar.getInstance();
+
+//    private ArrayAdapter<String> adapter;
+
+//    private static final int REQUEST_CODE_READ_CONTACTS=1;
+//    private static boolean READ_CONTACTS_GRANTED =false;
+//
+//    ArrayList<String> contacts = new ArrayList<>();
+//    Button addBtn;
+
+//     private static final String TAG = "MainActivity";
+//     private static final int LOADER_ID = 225;
+  
     private ArrayAdapter<User> adapter;
     private EditText nameText, ageText;
     private List<User> users;
@@ -1504,8 +1540,695 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
+      
+//    }
+//    private File getExternalPath() {
+//        return new File(getExternalFilesDir(null), FILE_NAME);
+//    }
+//    // сохранение файла
+//    public void saveText(View view){
+//
+//        try(FileOutputStream fos = new FileOutputStream(getExternalPath())) {
+//            EditText textBox = findViewById(R.id.editor);
+//            String text = textBox.getText().toString();
+//            fos.write(text.getBytes());
+//            Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//    // открытие файла
+//    public void openText(View view){
+//
+//        TextView textView = findViewById(R.id.text);
+//        File file = getExternalPath();
+//        // если файл не существует, выход из метода
+//        if(!file.exists()) return;
+//        try(FileInputStream fin =  new FileInputStream(file)) {
+//            byte[] bytes = new byte[fin.available()];
+//            fin.read(bytes);
+//            String text = new String (bytes);
+//            textView.setText(text);
+//        }
+//        catch(IOException ex) {
+//
+//            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
 
-        nameText = findViewById(R.id.nameText);
+
+//    }
+//    public void onClick(View view){
+//        SQLiteDatabase db = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+//        db.execSQL("CREATE TABLE IF NOT EXISTS users (name TEXT, age INTEGER, UNIQUE(name))");
+//        db.execSQL("INSERT OR IGNORE INTO users VALUES ('Tom Smith', 23), ('John Dow', 31);");
+//
+//        Cursor query = db.rawQuery("SELECT * FROM users;", null);
+//        TextView textView = findViewById(R.id.textView);
+//        textView.setText("");
+//        while(query.moveToNext()){
+//            String name = query.getString(0);
+//            int age = query.getInt(1);
+//            textView.append("Name: " + name + " Age: " + age + "\n");
+//        }
+//        query.close();
+//        db.close();
+//    }
+
+
+//        header = findViewById(R.id.header);
+//        userList = findViewById(R.id.list);
+//
+//        databaseHelper = new DatabaseHelper(getApplicationContext());
+//    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        // открываем подключение
+//        db = databaseHelper.getReadableDatabase();
+//
+//        //получаем данные из бд в виде курсора
+//        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE, null);
+//        // определяем, какие столбцы из курсора будут выводиться в ListView
+//        String[] headers = new String[] {DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
+//        // создаем адаптер, передаем в него курсор
+//        userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
+//                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
+//        header.setText("Найдено элементов: " +  userCursor.getCount());
+//        userList.setAdapter(userAdapter);
+//    }
+//
+//    @Override
+//    public void onDestroy(){
+//        super.onDestroy();
+//        // Закрываем подключение и курсор
+//        db.close();
+//        userCursor.close();
+//    }
+
+
+//    userList = findViewById(R.id.list);
+//        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        @Override
+//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//            Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+//            intent.putExtra("id", id);
+//            startActivity(intent);
+//        }
+//    });
+//
+//    databaseHelper = new DatabaseHelper(getApplicationContext());
+//}
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        // открываем подключение
+//        db = databaseHelper.getReadableDatabase();
+//
+//        //получаем данные из бд в виде курсора
+//        userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE, null);
+//        // определяем, какие столбцы из курсора будут выводиться в ListView
+//        String[] headers = new String[]{DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
+//        // создаем адаптер, передаем в него курсор
+//        userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
+//                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
+//        userList.setAdapter(userAdapter);
+//    }
+//
+//    // по нажатию на кнопку запускаем UserActivity для добавления данных
+//    public void add(View view) {
+//        Intent intent = new Intent(this, UserActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        // Закрываем подключение и курсор
+//        db.close();
+//        userCursor.close();
+//    }
+
+
+//        userList = findViewById(R.id.list);
+//        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+//                intent.putExtra("id", id);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        databaseHelper = new DatabaseHelper(getApplicationContext());
+//        // создаем базу данных
+//        databaseHelper.create_db();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        // открываем подключение
+//        db = databaseHelper.open();
+//        //получаем данные из бд в виде курсора
+//        userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE, null);
+//        // определяем, какие столбцы из курсора будут выводиться в ListView
+//        String[] headers = new String[]{DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
+//        // создаем адаптер, передаем в него курсор
+//        userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
+//                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
+//        userList.setAdapter(userAdapter);
+//    }
+//
+//    // по нажатию на кнопку запускаем UserActivity для добавления данных
+//    public void add(View view) {
+//        Intent intent = new Intent(this, UserActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        // Закрываем подключение и курсор
+//        db.close();
+//        userCursor.close();
+//    }
+
+
+//        userList = (ListView)findViewById(R.id.userList);
+//        userFilter = (EditText)findViewById(R.id.userFilter);
+//
+//        sqlHelper = new DatabaseHelper(getApplicationContext());
+//        // создаем базу данных
+//        sqlHelper.create_db();
+//    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        try {
+//            db = sqlHelper.open();
+//            userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE, null);
+//            String[] headers = new String[]{DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_YEAR};
+//            userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
+//                    userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
+//
+//            // если в текстовом поле есть текст, выполняем фильтрацию
+//            // данная проверка нужна при переходе от одной ориентации экрана к другой
+//            AppCompatEditText userFilter;
+//            if(!userFilter.getText().toString().isEmpty())
+//                userAdapter.getFilter().filter(userFilter.getText().toString());
+//
+//            // установка слушателя изменения текста
+//            userFilter.addTextChangedListener(new TextWatcher() {
+//
+//                public void afterTextChanged(Editable s) { }
+//
+//                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+//                // при изменении текста выполняем фильтрацию
+//                public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                    userAdapter.getFilter().filter(s.toString());
+//                }
+//            });
+//
+//            // устанавливаем провайдер фильтрации
+//            userAdapter.setFilterQueryProvider(new FilterQueryProvider() {
+//                @Override
+//                public Cursor runQuery(CharSequence constraint) {
+//
+//                    if (constraint == null || constraint.length() == 0) {
+//
+//                        return db.rawQuery("select * from " + DatabaseHelper.TABLE, null);
+//                    }
+//                    else {
+//                        return db.rawQuery("select * from " + DatabaseHelper.TABLE + " where " +
+//                                DatabaseHelper.COLUMN_NAME + " like ?", new String[]{"%" + constraint.toString() + "%"});
+//                    }
+//                }
+//            });
+//
+//            userList.setAdapter(userAdapter);
+//        }
+//        catch (SQLException ex){}
+//    }
+//    @Override
+//    public void onDestroy(){
+//        super.onDestroy();
+//        // Закрываем подключение и курсор
+//        db.close();
+//        userCursor.close();
+//    }
+
+
+//        userList = findViewById(R.id.list);
+//
+//        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                User user =arrayAdapter.getItem(position);
+//                if(user!=null) {
+//                    Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+//                    intent.putExtra("id", user.getId());
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+//    }
+//
+//     @Override
+//     public void onResume() {
+//         super.onResume();
+//         DatabaseAdapter adapter = new DatabaseAdapter(this);
+//         adapter.open();
+//
+//         List<User> users = adapter.getUsers();
+//
+//         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
+//         userList.setAdapter(arrayAdapter);
+//         adapter.close();
+//     }
+//     // по нажатию на кнопку запускаем UserActivity для добавления данных
+//     public void add(View view){
+//         Intent intent = new Intent(this, UserActivity.class);
+//         startActivity(intent);
+//     }
+
+
+//  ViewPager2 pager = findViewById(R.id.pager);
+//        FragmentStateAdapter pageAdapter = new MyAdapter(this);
+//        pager.setAdapter(pageAdapter);
+//    }
+
+
+//        ViewPager2 pager = findViewById(R.id.pager);
+//        FragmentStateAdapter pageAdapter = new MyAdapter(this);
+//        pager.setAdapter(pageAdapter);
+//
+//        TabLayout tabLayout = findViewById(R.id.tab_layout);
+//        TabLayoutMediator tabLayoutMediator= new TabLayoutMediator(tabLayout, pager, new TabLayoutMediator.TabConfigurationStrategy(){
+//
+//            @Override
+//            public void onConfigureTab(TabLayout.Tab tab, int position) {
+//                tab.setText("Страница " + (position + 1));
+//            }
+//        });
+//        tabLayoutMediator.attach();
+//    }
+
+
+//    }
+//
+//    public void click(View v) {
+//        Intent i = new Intent(this, MediaService.class);
+//        if (v.getId() == R.id.start) {
+//            startService(i);
+//        } else {
+//            stopService(i);
+//
+//        }
+//    }
+
+
+//        currentDateTime = findViewById(R.id.currentDateTime);
+//        setInitialDateTime();
+//    }
+//
+//    // отображаем диалоговое окно для выбора даты
+//    public void setDate(View v) {
+//        new DatePickerDialog(MainActivity.this, d,
+//                dateAndTime.get(Calendar.YEAR),
+//                dateAndTime.get(Calendar.MONTH),
+//                dateAndTime.get(Calendar.DAY_OF_MONTH))
+//                .show();
+//    }
+//
+//    // отображаем диалоговое окно для выбора времени
+//    public void setTime(View v) {
+//        new TimePickerDialog(MainActivity.this, t,
+//                dateAndTime.get(Calendar.HOUR_OF_DAY),
+//                dateAndTime.get(Calendar.MINUTE), true)
+//                .show();
+//    }
+//    // установка начальных даты и времени
+//    private void setInitialDateTime() {
+//
+//        currentDateTime.setText(DateUtils.formatDateTime(this,
+//                dateAndTime.getTimeInMillis(),
+//                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
+//                        | DateUtils.FORMAT_SHOW_TIME));
+//    }
+//
+//    // установка обработчика выбора времени
+//    TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
+//        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//            dateAndTime.set(Calendar.MINUTE, minute);
+//            setInitialDateTime();
+//        }
+//    };
+//
+//    // установка обработчика выбора даты
+//    DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
+//        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//            dateAndTime.set(Calendar.YEAR, year);
+//            dateAndTime.set(Calendar.MONTH, monthOfYear);
+//            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//            setInitialDateTime();
+//        }
+//    };
+
+
+//    }
+//
+//    public void showDialog(View v) {
+//
+//        CustomDialogFragment dialog = new CustomDialogFragment();
+//        dialog.show(getSupportFragmentManager(), "custom");
+//    }
+
+
+//        ListView phonesList = findViewById(R.id.phonesList);
+//        ArrayList<String> phones = new ArrayList<>();
+//        phones.add("Google Pixel");
+//        phones.add("Huawei P9");
+//        phones.add("LG G5");
+//        phones.add("Samsung Galaxy S8");
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phones);
+//        phonesList.setAdapter(adapter);
+//
+//        phonesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                String selectedPhone = adapter.getItem(position);
+//                CustomDialogFragment dialog = new CustomDialogFragment();
+//                Bundle args = new Bundle();
+//                args.putString("phone", selectedPhone);
+//                dialog.setArguments(args);
+//                dialog.show(getSupportFragmentManager(), "custom");
+//            }
+//        });
+//    }
+
+//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phones);
+//        phonesList.setAdapter(adapter);
+//
+//        phonesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                String selectedPhone = adapter.getItem(position);
+//                CustomDialogFragment dialog = new CustomDialogFragment();
+//                Bundle args = new Bundle();
+//                args.putString("phone", selectedPhone);
+//                dialog.setArguments(args);
+//                dialog.show(getSupportFragmentManager(), "custom");
+//            }
+//        });
+//    }
+//    @Override
+//    public void remove(String name) {
+//        adapter.remove(name);
+//    }
+
+
+//        ImageView img = findViewById(R.id.animationView);
+//        // устанавливаем ресурс анимации
+//        img.setBackgroundResource(R.drawable.animation);
+//        // получаем объект анимации
+//        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+//        // по нажатию на ImageView
+//        img.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // запускаем анимацию
+//                frameAnimation.start();
+//            }
+//        });
+//    }
+
+
+//        ImageView img = findViewById(R.id.animationView);
+//        // определим для ImageView какое-нибудь изображение
+//        img.setImageResource(R.drawable.dubi2);
+//        // создаем анимацию
+//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.common_animation);
+//        // запуск анимации
+//        img.startAnimation(animation);
+//    }
+
+
+//        // получаем разрешения
+//        int hasReadContactPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
+//        // если устройство до API 23, устанавливаем разрешение
+//        if(hasReadContactPermission == PackageManager.PERMISSION_GRANTED){
+//            READ_CONTACTS_GRANTED = true;
+//        }
+//        else{
+//            // вызываем диалоговое окно для установки разрешений
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_CODE_READ_CONTACTS);
+//        }
+//        // если разрешение установлено, загружаем контакты
+//        if (READ_CONTACTS_GRANTED){
+//            loadContacts();
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+//
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//
+//        if (requestCode == REQUEST_CODE_READ_CONTACTS) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                READ_CONTACTS_GRANTED = true;
+//            }
+//        }
+//        if(READ_CONTACTS_GRANTED){
+//            loadContacts();
+//        }
+//        else{
+//            Toast.makeText(this, "Требуется установить разрешения", Toast.LENGTH_LONG).show();
+//        }
+//    }
+//
+//    private void loadContacts(){
+//        ContentResolver contentResolver = getContentResolver();
+//        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+//        ArrayList<String> contacts = new ArrayList<String>();
+//
+//        if(cursor!=null){
+//            while (cursor.moveToNext()) {
+//
+//                // получаем каждый контакт
+//                String contact = cursor.getString(
+//                        cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
+//                // добавляем контакт в список
+//                contacts.add(contact);
+//            }
+//            cursor.close();
+//        }
+//
+//        // создаем адаптер
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_list_item_1, contacts);
+//
+//        ListView contactList = findViewById(R.id.contactList);
+//        // устанавливаем для списка адаптер
+//        contactList.setAdapter(adapter);
+//    }
+
+
+//        addBtn = findViewById(R.id.addBtn);
+//        // получаем разрешения
+//        int hasReadContactPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
+//        // если устройство до API 23, устанавливаем разрешение
+//        if(hasReadContactPermission == PackageManager.PERMISSION_GRANTED){
+//            READ_CONTACTS_GRANTED = true;
+//        }
+//        else{
+//            // вызываем диалоговое окно для установки разрешений
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS}, REQUEST_CODE_READ_CONTACTS);
+//        }
+//        // если разрешение установлено, загружаем контакты
+//        if (READ_CONTACTS_GRANTED){
+//            loadContacts();
+//        }
+//
+//        addBtn.setEnabled(READ_CONTACTS_GRANTED);
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+//
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//
+//        if (requestCode == REQUEST_CODE_READ_CONTACTS) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                READ_CONTACTS_GRANTED = true;
+//            }
+//            addBtn.setEnabled(READ_CONTACTS_GRANTED);
+//        }
+//        if(READ_CONTACTS_GRANTED){
+//            loadContacts();
+//        }
+//        else{
+//            Toast.makeText(this, "Требуется установить разрешения", Toast.LENGTH_LONG).show();
+//        }
+//    }
+//    public void onAddContact(View v) {
+//        ContentValues contactValues = new ContentValues();
+//        EditText contactText = findViewById(R.id.newContact);
+//        String newContact = contactText.getText().toString();
+//        contactText.setText("");
+//        contactValues.put(ContactsContract.RawContacts.ACCOUNT_NAME, newContact);
+//        contactValues.put(ContactsContract.RawContacts.ACCOUNT_TYPE, newContact);
+//        Uri newUri = getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI, contactValues);
+//        long rawContactsId = ContentUris.parseId(newUri);
+//        contactValues.clear();
+//        contactValues.put(ContactsContract.Data.RAW_CONTACT_ID, rawContactsId);
+//        contactValues.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);
+//        contactValues.put(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, newContact);
+//        getContentResolver().insert(ContactsContract.Data.CONTENT_URI, contactValues);
+//        Toast.makeText(getApplicationContext(), newContact + " добавлен в список контактов", Toast.LENGTH_LONG).show();
+//        loadContacts();
+//    }
+//    private void loadContacts(){
+//        contacts.clear();
+//        ContentResolver contentResolver = getContentResolver();
+//        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+//        if(cursor!=null){
+//            while (cursor.moveToNext()) {
+//
+//                // получаем каждый контакт
+//                String contact = cursor.getString(
+//                        cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
+//                // добавляем контакт в список
+//                contacts.add(contact);
+//            }
+//            cursor.close();
+//        }
+//        // создаем адаптер
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_list_item_1, contacts);
+//        // устанавливаем для списка адаптер
+//        ListView contactList = findViewById(R.id.contactList);
+//        contactList.setAdapter(adapter);
+//    }
+
+
+//    }
+//    // получение всех
+//    public void getAll(View view){
+//        String[] projection = {
+//                FriendsContract.Columns._ID,
+//                FriendsContract.Columns.NAME,
+//                FriendsContract.Columns.EMAIL,
+//                FriendsContract.Columns.PHONE
+//        };
+//        ContentResolver contentResolver = getContentResolver();
+//        Cursor cursor = contentResolver.query(FriendsContract.CONTENT_URI,
+//                projection,
+//                null,
+//                null,
+//                FriendsContract.Columns.NAME);
+//        if(cursor != null){
+//            Log.d(TAG, "count: " + cursor.getCount());
+//            // перебор элементов
+//            while(cursor.moveToNext()){
+//                for(int i=0; i < cursor.getColumnCount(); i++){
+//                    Log.d(TAG, cursor.getColumnName(i) + " : " + cursor.getString(i));
+//                }
+//                Log.d(TAG, "=========================");
+//            }
+//            cursor.close();
+//        }
+//        else{
+//            Log.d(TAG, "Cursor is null");
+//        }
+//    }
+//    // Добавление
+//    public void add(View view){
+//        ContentResolver contentResolver = getContentResolver();
+//        ContentValues values = new ContentValues();
+//        values.put(FriendsContract.Columns.NAME, "Sam");
+//        values.put(FriendsContract.Columns.EMAIL, "sam@gmail.com");
+//        values.put(FriendsContract.Columns.PHONE, "+13676254985");
+//        Uri uri = contentResolver.insert(FriendsContract.CONTENT_URI, values);
+//        Log.d(TAG, "Friend added");
+//    }
+//
+//    // Обновление
+//    public void update(View view){
+//        ContentResolver contentResolver = getContentResolver();
+//        ContentValues values = new ContentValues();
+//        values.put(FriendsContract.Columns.EMAIL, "sammy@gmail.com");
+//        values.put(FriendsContract.Columns.PHONE, "+55555555555");
+//        String selection = FriendsContract.Columns.NAME + " = 'Sam'";
+//        int count = contentResolver.update(FriendsContract.CONTENT_URI, values, selection, null);
+//        Log.d(TAG, "Friend updated");
+//    }
+//    // Удаление
+//    public void delete(View view){
+//        ContentResolver contentResolver = getContentResolver();
+//        String selection = FriendsContract.Columns.NAME + " = ?";
+//        String[] args = {"Sam"};
+//        int count = contentResolver.delete(FriendsContract.CONTENT_URI, selection, args);
+//        Log.d(TAG, "Friend deleted");
+//    }
+
+
+//         // запускаем загрузку данных через провайдер контента
+//         LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
+//     }
+
+//     @NonNull
+//     @Override
+//     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+//         String[] projection = {
+//                 FriendsContract.Columns._ID,
+//                 FriendsContract.Columns.NAME,
+//                 FriendsContract.Columns.EMAIL,
+//                 FriendsContract.Columns.PHONE
+//         };
+//         if(id == LOADER_ID)
+//             return new CursorLoader(this, FriendsContract.CONTENT_URI,
+//                     projection,
+//                     null,
+//                     null,
+//                     FriendsContract.Columns.NAME);
+//         else
+//             throw new InvalidParameterException("Invalid loader id");
+//     }
+
+//     @Override
+//     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+//         if(data != null){
+//             Log.d(TAG, "count: " + data.getCount());
+//             // перебор элементов
+//             while(data.moveToNext()){
+//                 for(int i=0; i < data.getColumnCount(); i++){
+//                     Log.d(TAG, data.getColumnName(i) + " : " + data.getString(i));
+//                 }
+//                 Log.d(TAG, "=========================");
+//             }
+//             data.close();
+//         }
+//         else{
+//             Log.d(TAG, "Cursor is null");
+//         }
+//     }
+
+//     @Override
+//     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+//         Log.d(TAG, "onLoaderReset...");
+//     }
+      
+      
+              nameText = findViewById(R.id.nameText);
         ageText = findViewById(R.id.ageText);
         listView = findViewById(R.id.list);
         users = new ArrayList<>();
@@ -1542,5 +2265,4 @@ public class MainActivity extends AppCompatActivity {
         else{
             Toast.makeText(this, "Не удалось открыть данные", Toast.LENGTH_LONG).show();
         }
-    }
 }
