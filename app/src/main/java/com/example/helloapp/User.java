@@ -2,8 +2,7 @@ package com.example.helloapp;
 
 import java.io.Serializable;
 
-
-public class User implements Serializable {
+public class User {
 
 //    private String name;
 //    private String company;
@@ -123,36 +122,55 @@ public class User implements Serializable {
 //    }
 
 
-    private long id;
-    private String name;
-    private int year;
+//     private long id;
+//     private String name;
+//     private int year;
 
-    User(long id, String name, int year){
-        this.id = id;
-        this.name = name;
-        this.year = year;
-    }
-    public long getId() {
-        return id;
-    }
-    public String getName() {
+//     User(long id, String name, int year){
+//         this.id = id;
+//         this.name = name;
+//         this.year = year;
+//     }
+//     public long getId() {
+//         return id;
+//     }
+//     public String getName() {
+//         return name;
+//     }
+
+//     public void setName(String name) {
+//         this.name = name;
+//     }
+
+//     public int getYear() {
+//         return year;
+//     }
+
+//     public void setYear(int year) {
+//         this.year = year;
+//     }
+
+//     @Override
+//     public String toString() {
+//         return this.name + " : " + this.year;
+//     }
+  
+  
+    private String name;
+    private String age;
+
+    public String getName(){
         return name;
     }
-
-    public void setName(String name) {
+    public String getAge(){
+        return age;
+    }
+    public void setName(String name){
         this.name = name;
     }
-
-    public int getYear() {
-        return year;
+    public void setAge(String age){
+        this.age = age;
     }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    @Override
-    public String toString() {
-        return this.name + " : " + this.year;
-    }
+    public String toString(){
+        return  "User: " + name + " - " + age;
 }
