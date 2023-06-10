@@ -1,30 +1,19 @@
 package com.example.helloapp;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
-
-import java.security.InvalidParameterException;
-
-import org.xmlpull.v1.XmlPullParser;
+import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -102,16 +91,16 @@ public class MainActivity extends AppCompatActivity {
 
 //     private static final String TAG = "MainActivity";
 //     private static final int LOADER_ID = 225;
-  
-    private ArrayAdapter<User> adapter;
-    private EditText nameText, ageText;
-    private List<User> users;
-    ListView listView;
+
+//    private ArrayAdapter<User> adapter;
+//    private EditText nameText, ageText;
+//    private List<User> users;
+//    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.json_layout);
+        setContentView(R.layout.xmlnetwork_layout);
 
         // создание TextView
         //TextView textView = new TextView(this);
@@ -1542,7 +1531,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-      
+
 //    }
 //    private File getExternalPath() {
 //        return new File(getExternalFilesDir(null), FILE_NAME);
@@ -2228,8 +2217,8 @@ public class MainActivity extends AppCompatActivity {
 //     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 //         Log.d(TAG, "onLoaderReset...");
 //     }
-      
-      
+
+
 //         nameText = findViewById(R.id.nameText);
 //         ageText = findViewById(R.id.ageText);
 //         listView = findViewById(R.id.list);
@@ -2267,17 +2256,77 @@ public class MainActivity extends AppCompatActivity {
 //         else{
 //             Toast.makeText(this, "Не удалось открыть данные", Toast.LENGTH_LONG).show();
 //         }
-      
-      
-    setContentView(R.layout.activity_main);
 
-    XmlPullParser xpp = getResources().getXml(R.xml.users);
-    UserResourceParser parser = new UserResourceParser();
-        if(parser.parse(xpp))
-    {
-        for(User prod: parser.getUsers()){
-            Log.d("XML", prod.toString());
+
+//        setContentView(R.layout.activity_main);
+//
+//        XmlPullParser xpp = getResources().getXml(R.xml.users);
+//        UserResourceParser parser = new UserResourceParser();
+//        if (parser.parse(xpp)) {
+//            for (User prod : parser.getUsers()) {
+//                Log.d("XML", prod.toString());
+//            }
+//        }
+//    }
+
+
+        ListView usersList = findViewById(R.id.usersList);
+        TextView contentView = findViewById(R.id.contentView);
+
+        contentView.setText("Загрузка...");
+        new Thread(new Runnable() {
+            public void run() {
+                try{
+                    String content = download("https://example.com/users.xml");
+                    usersList.post(new Runnable() {
+                        public void run() {
+                            UserXmlParser parser = new UserXmlParser();
+                            if(parser.parse(content))
+                            {
+                                ArrayAdapter<User> adapter = new ArrayAdapter(getBaseContext(),
+                                        android.R.layout.simple_list_item_1, parser.getUsers());
+                                usersList.setAdapter(adapter);
+                                contentView.setText("Загруженно объектов: " + adapter.getCount());
+                            }
+                        }
+                    });
+                }
+                catch (IOException ex){
+                    contentView.post(new Runnable() {
+                        public void run() {
+                            contentView.setText("Ошибка: " + ex.getMessage());
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
+    private String download(String urlPath) throws IOException{
+        StringBuilder xmlResult = new StringBuilder();
+        BufferedReader reader = null;
+        InputStream stream = null;
+        HttpsURLConnection connection = null;
+        try {
+            URL url = new URL(urlPath);
+            connection = (HttpsURLConnection) url.openConnection();
+            stream = connection.getInputStream();
+            reader = new BufferedReader(new InputStreamReader(stream));
+            String line;
+            while ((line=reader.readLine()) != null) {
+                xmlResult.append(line);
+            }
+            return xmlResult.toString();
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+            if (stream != null) {
+                stream.close();
+            }
+            if (connection != null) {
+                connection.disconnect();
+            }
         }
     }
-}
 }
